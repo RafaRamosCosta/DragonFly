@@ -1,5 +1,8 @@
 package br.com.dragonfly.to;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ProdutoTO {
 	private int idProduto;
 	private String nmProduto, dsProduto, stProduto;

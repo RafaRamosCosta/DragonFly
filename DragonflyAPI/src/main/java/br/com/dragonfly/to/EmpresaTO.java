@@ -1,5 +1,8 @@
 package br.com.dragonfly.to;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class EmpresaTO {
 	private int idEmpresa;
 	private String nmFantasia, rzSocial, login, senha;

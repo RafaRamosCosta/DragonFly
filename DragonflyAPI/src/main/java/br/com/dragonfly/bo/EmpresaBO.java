@@ -18,8 +18,10 @@ public class EmpresaBO {
 		return eDAO.alterar(empresa);
 	}
 	
-	public String excluiEmpresa(EmpresaTO empresa) {
+	public String excluiEmpresa(int id) {
 		eDAO = new EmpresaDAO();
+		EmpresaTO empresa = new EmpresaTO();
+		empresa.setIdEmpresa(id);
 		return eDAO.excluir(empresa);
 	}
 	

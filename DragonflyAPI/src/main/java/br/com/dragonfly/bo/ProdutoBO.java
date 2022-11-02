@@ -18,8 +18,10 @@ public class ProdutoBO {
 		return pDAO.alterar(produto);
 	}
 	
-	public String excluiProduto(ProdutoTO produto) {
+	public String excluiProduto(int id) {
 		pDAO = new ProdutoDAO();
+		ProdutoTO produto = new ProdutoTO();
+		produto.setIdProduto(id);
 		return pDAO.excluir(produto);
 	}
 	

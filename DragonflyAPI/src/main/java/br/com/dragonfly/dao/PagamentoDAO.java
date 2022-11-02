@@ -58,7 +58,7 @@ public class PagamentoDAO implements IDAO {
 				return "Alterado com sucesso!";
 			} else {
 				Conexao.fechaConexao(con);
-				return "Erro ao alterado!";
+				return "Erro ao alterar!";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

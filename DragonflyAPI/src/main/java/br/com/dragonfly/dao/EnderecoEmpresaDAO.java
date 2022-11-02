@@ -47,11 +47,10 @@ public class EnderecoEmpresaDAO implements IDAO{
 		String sql = "UPDATE T_DF_ENDERECO_EMPRESA SET nm_logradouro = ?, nr_logradouro = ?, nm_bairro = ? WHERE id_endereco_empresa = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, endereco.getEmpresa().getIdEmpresa());
-			ps.setString(2, endereco.getNmLog());
-			ps.setLong(3, endereco.getNrLog());
-			ps.setString(4, endereco.getNmBairro());
-			ps.setInt(5, endereco.getIdEndEmp());
+			ps.setString(1, endereco.getNmLog());
+			ps.setInt(2, endereco.getNrLog());
+			ps.setString(3, endereco.getNmBairro());
+			ps.setInt(4, endereco.getEmpresa().getIdEmpresa());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);

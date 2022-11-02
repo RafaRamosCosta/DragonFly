@@ -18,8 +18,10 @@ public class FormaPagtoBO {
 		return fPDAO.alterar(formaPagto);
 	}
 	
-	public String excluiFormaPagto(FormaPagtoTO formaPagto) {
+	public String excluiFormaPagto(int id) {
 		fPDAO = new FormaPagtoDAO();
+		FormaPagtoTO formaPagto = new FormaPagtoTO();
+		formaPagto.setIdFormaPagto(id);
 		return fPDAO.excluir(formaPagto);
 	}
 	

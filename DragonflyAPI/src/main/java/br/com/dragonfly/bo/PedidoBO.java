@@ -18,8 +18,10 @@ public class PedidoBO {
 		return pDAO.alterar(pedido);
 	}
 	
-	public String excluiPedido(PedidoTO pedido) {
+	public String excluiPedido(int id) {
 		pDAO = new PedidoDAO();
+		PedidoTO pedido = new PedidoTO();
+		pedido.setIdPedido(id);
 		return pDAO.excluir(pedido);
 	}
 	

@@ -18,8 +18,10 @@ public class PagamentoBO {
 		return pDAO.alterar(pagamento);
 	}
 	
-	public String excluiPagamento(PagamentoTO pagamento) {
+	public String excluiPagamento(int id) {
 		pDAO = new PagamentoDAO();
+		PagamentoTO pagamento = new PagamentoTO();
+		pagamento.setIdPagamento(id);
 		return pDAO.excluir(pagamento);
 	}
 	

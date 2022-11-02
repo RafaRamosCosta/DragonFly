@@ -18,8 +18,10 @@ private EnderecoEmpresaDAO eDAO;
 		return eDAO.alterar(endereco);
 	}
 	
-	public String excluiEndereco(EnderecoEmpresaTO endereco) {
+	public String excluiEndereco(int id) {
 		eDAO = new EnderecoEmpresaDAO();
+		EnderecoEmpresaTO endereco = new EnderecoEmpresaTO();
+		endereco.setIdEndEmp(id);
 		return eDAO.excluir(endereco);
 	}
 	

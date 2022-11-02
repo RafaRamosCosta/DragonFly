@@ -51,10 +51,10 @@ public class ContatoEmpresaDAO implements IDAO{
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
-				return "Inserido com sucesso!";
+				return "Alterado com sucesso!";
 			} else {
 				Conexao.fechaConexao(con);
-				return "Erro ao inserir!";
+				return "Erro ao alterar!";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

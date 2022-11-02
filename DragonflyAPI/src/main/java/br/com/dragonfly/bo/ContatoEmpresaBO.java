@@ -18,8 +18,10 @@ public class ContatoEmpresaBO {
 		return cDAO.alterar(contato);
 	}
 	
-	public String excluiContato(ContatoEmpresaTO contato) {
+	public String excluiContato(int id) {
 		cDAO = new ContatoEmpresaDAO();
+		ContatoEmpresaTO contato = new ContatoEmpresaTO();
+		contato.setIdContEmp(id);
 		return cDAO.excluir(contato);
 	}
 	

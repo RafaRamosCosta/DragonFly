@@ -104,6 +104,7 @@ public class FormaPagtoDAO {
 		FormaPagtoTO formaPagto = new FormaPagtoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				int idFormaPagto = rs.getInt(1);

@@ -118,6 +118,7 @@ public class PagamentoDAO implements IDAO {
 		PagamentoTO pagamento = new PagamentoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int idPagamento = rs.getInt(1);

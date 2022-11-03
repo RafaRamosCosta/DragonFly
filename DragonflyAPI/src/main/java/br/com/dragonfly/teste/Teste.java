@@ -20,26 +20,26 @@ public class Teste {
 	public static void main(String[] args) {
 		
 		ProdutoTO prod = new ProdutoTO();
-		prod.setIdProduto(1);
-		prod.setNmProduto("Dragonfly DF90");
-		prod.setDsProduto("Drone com IA e alta velociadade");
+		prod.setIdProduto(2);
+		prod.setNmProduto("Dragonfly DF30");
+		prod.setDsProduto("Drone controlado por controle remoto, capacidade de carga de até 30kg.");
 		prod.setStProduto("A");
-		prod.setVlUnitario(10499.99f);
+		prod.setVlUnitario(6499.99f);
 		
-		ProdutoBO pBO = new ProdutoBO();
-		System.out.println(pBO.excluiProduto(prod.getIdProduto()));
+//		ProdutoBO pBO = new ProdutoBO();
+//		System.out.println(pBO.excluiProduto(prod.getIdProduto()));
 		
 		
 		EmpresaTO empresa = new EmpresaTO();
 		empresa.setIdEmpresa(1);
-		empresa.setRzSocial("Grupo GCB");
-		empresa.setNmFantasia("GCB");
-		empresa.setLogin("gcb");
-		empresa.setSenha("12345");
-		empresa.setCnpj(230439478);
+		empresa.setRzSocial("IBM");
+		empresa.setNmFantasia("IBM");
+		empresa.setLogin("ibm");
+		empresa.setSenha("27364");
+		empresa.setCnpj(357234578);
 		
-//		EmpresaBO eBO = new EmpresaBO();
-//		System.out.println(eBO.alteraEmpresa(empresa));
+		EmpresaBO eBO = new EmpresaBO();
+		System.out.println(eBO.excluiEmpresa(empresa.getIdEmpresa()));
 		
 		
 		EnderecoEmpresaTO endereco = new EnderecoEmpresaTO();
@@ -49,8 +49,8 @@ public class Teste {
 		endereco.setNrLog(150);
 		endereco.setNmBairro("Itaim Bibi");
 		endereco.setZona("ZS");
-//		EnderecoEmpresaBO eBO = new EnderecoEmpresaBO();
-//		System.out.println(eBO.alteraEndereco(endereco));
+//		EnderecoEmpresaBO endBO = new EnderecoEmpresaBO();
+//		System.out.println(endBO.cadastraEndereco(endereco));
 		
 		ContatoEmpresaTO contato = new ContatoEmpresaTO();
 		contato.setIdContEmp(1);
@@ -68,12 +68,12 @@ public class Teste {
 		pedido.setQtProduto(30);
 		
 //		PedidoBO pBO = new PedidoBO();
-//		System.out.println(pBO.alteraPedido(pedido));
+//		System.out.println(pBO.excluiPedido(pedido.getIdPedido()));
 		
 		
 		FormaPagtoTO forma = new FormaPagtoTO();
-		forma.setIdFormaPagto(1);
-		forma.setNmFormaPagto("Cripto Moedas");
+		forma.setIdFormaPagto(2);
+		forma.setNmFormaPagto("Boleto Banário");
 //		FormaPagtoBO fBO = new FormaPagtoBO();
 //		System.out.println(fBO.cadastraFormaPagto(forma));
 		

@@ -111,7 +111,7 @@ public class PedidoDAO {
 	
 	public PedidoTO listaPedido(int id) {
 		String sql = "SELECT * FROM T_DF_PEDIDO WHERE id_pedido = ?";
-		PedidoTO item = new PedidoTO();
+		PedidoTO pedido = new PedidoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -128,7 +128,7 @@ public class PedidoDAO {
 			}
 			
 			Conexao.fechaConexao(con);
-			return item;
+			return pedido;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

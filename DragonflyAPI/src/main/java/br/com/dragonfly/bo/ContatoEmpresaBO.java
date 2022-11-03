@@ -25,7 +25,7 @@ public class ContatoEmpresaBO {
 		return cDAO.excluir(contato);
 	}
 	
-	public ArrayList<ContatoEmpresaTO> listaContaos() {
+	public ArrayList<ContatoEmpresaTO> listaContatos() {
 		ArrayList<ContatoEmpresaTO> contatos;
 		cDAO = new ContatoEmpresaDAO();
 		contatos = cDAO.listaContatos();

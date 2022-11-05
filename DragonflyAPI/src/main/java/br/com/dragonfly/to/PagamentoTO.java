@@ -10,15 +10,16 @@ public class PagamentoTO {
 	private EmpresaTO empresa;
 	private String dtPagto;
 	private float vlTotal;
-	
-	public PagamentoTO() {}
 
-	public PagamentoTO(int idPagamento, FormaPagtoTO formaPagto, EmpresaTO empresa, PedidoTO pedido, float vlTotal,
+	public PagamentoTO() {
+	}
+
+	public PagamentoTO(int idPagamento, PedidoTO pedido, FormaPagtoTO formaPagto, EmpresaTO empresa, float vlTotal,
 			String dtPagto) {
 		this.idPagamento = idPagamento;
+		this.pedido = pedido;
 		this.formaPagto = formaPagto;
 		this.empresa = empresa;
-		this.pedido = pedido;
 		this.vlTotal = vlTotal;
 		this.dtPagto = dtPagto;
 	}
@@ -29,6 +30,14 @@ public class PagamentoTO {
 
 	public void setIdPagamento(int idPagamento) {
 		this.idPagamento = idPagamento;
+	}
+
+	public PedidoTO getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoTO pedido) {
+		this.pedido = pedido;
 	}
 
 	public FormaPagtoTO getFormaPagto() {
@@ -47,14 +56,6 @@ public class PagamentoTO {
 		this.empresa = empresa;
 	}
 
-	public PedidoTO getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(PedidoTO pedido) {
-		this.pedido = pedido;
-	}
-
 	public float getVlTotal() {
 		return vlTotal;
 	}
@@ -70,6 +71,5 @@ public class PagamentoTO {
 	public void setDtPagto(String dtPagto) {
 		this.dtPagto = dtPagto;
 	}
-	
-	
+
 }

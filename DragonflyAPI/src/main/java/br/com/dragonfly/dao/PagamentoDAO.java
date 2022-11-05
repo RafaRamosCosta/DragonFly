@@ -102,7 +102,7 @@ public class PagamentoDAO implements IDAO {
 				empresa.setIdEmpresa(rs.getInt(4));
 				String dtPagto = rs.getString(5);
 				float vlTotal = rs.getFloat(6);
-				pagamentos.add(new PagamentoTO(idPagamento, formaPagto, empresa, pedido, vlTotal, dtPagto));
+				pagamentos.add(new PagamentoTO(idPagamento, pedido, formaPagto, empresa, vlTotal, dtPagto));
 			}
 
 			Conexao.fechaConexao(con);
@@ -130,7 +130,7 @@ public class PagamentoDAO implements IDAO {
 				empresa.setIdEmpresa(rs.getInt(4));
 				String dtPagto = rs.getString(5);
 				float vlTotal = rs.getFloat(6);
-				pagamento = new PagamentoTO(idPagamento, formaPagto, empresa, pedido, vlTotal, dtPagto);
+				pagamento = new PagamentoTO(idPagamento, pedido, formaPagto, empresa, vlTotal, dtPagto);
 			}
 
 			Conexao.fechaConexao(con);

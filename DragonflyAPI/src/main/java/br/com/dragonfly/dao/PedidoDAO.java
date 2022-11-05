@@ -99,7 +99,7 @@ public class PedidoDAO {
 				empresa.setIdEmpresa(rs.getInt(3));
 				String dtPedido = rs.getString(4);
 				int qtPedido = rs.getInt(5);
-				pedidos.add(new PedidoTO(idPedido, empresa, produto, dtPedido, qtPedido));
+				pedidos.add(new PedidoTO(idPedido, produto, empresa, dtPedido, qtPedido));
 			}
 			Conexao.fechaConexao(con);
 			return pedidos;
@@ -124,7 +124,7 @@ public class PedidoDAO {
 				empresa.setIdEmpresa(rs.getInt(3));
 				String dtPedido = rs.getString(4);
 				int qtPedido = rs.getInt(5);
-				pedido = new PedidoTO(idPedido, empresa, produto, dtPedido, qtPedido);
+				pedido = new PedidoTO(idPedido, produto, empresa, dtPedido, qtPedido);
 			}
 			
 			Conexao.fechaConexao(con);

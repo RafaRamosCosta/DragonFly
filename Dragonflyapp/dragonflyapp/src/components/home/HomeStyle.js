@@ -25,7 +25,7 @@ export const DivLinkProdutos = styled.div`
   width: fit-content;
 
   .link-produtos {
-    padding: 10px;
+    padding: 5px;
     font-size: 20px;
     color: #0c872b;
     text-decoration: none;
@@ -41,11 +41,11 @@ export const DivLinkProdutos = styled.div`
 
 export const DivApp = styled.div`
   max-width: 900px;
-  min-height: 110vh;
   display: flex;
   align-items: center;
-  @media screen and (max-width: 768px) {
-    min-height: 900px;
+  @media screen and (max-width: 900px) {
+    margin-top: 150px;
+    height: 400px;
   }
 `;
 
@@ -53,6 +53,7 @@ export const DivInner = styled.div`
   display: flex;
   @media screen and (max-width: 780px) {
     padding-left: 280px;
+   
   }
 `;
 
@@ -62,17 +63,14 @@ export const DivCarrossel = styled.div`
 `;
 
 export const DivItem = styled.div`
-  min-height: 600px;
-  min-width: 650px;
+  min-width: 400px;
   padding: 8px;
   transition: all 0.2s ease-in-out;
   text-align: center;
   :hover {
     transform: scale(1.02);
   }
-  @media screen and (max-width: 900px) {
-    min-width: 500px;
-  }
+  
   img {
     border-radius: 10px;
     pointer-events: none;

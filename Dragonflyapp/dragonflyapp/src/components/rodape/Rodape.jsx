@@ -24,7 +24,7 @@ export default function Rodape() {
           </div>
         </section>
       </div>
-      <p>&copy;2022 MatchJobs - Todos os direitos reservados</p>
+      <p>&copy;2022 Dragonfly Drones - Todos os direitos reservados</p>
     </Footer>
   );
 }

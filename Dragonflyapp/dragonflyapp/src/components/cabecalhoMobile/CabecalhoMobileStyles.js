@@ -17,6 +17,7 @@ export const HeaderMobile = styled.header`
   position: fixed;
   width: 100%;
   z-index: 10;
+  top: 0;
   nav {
     position: absolute;
     top: 88px;
@@ -41,7 +42,7 @@ export const HeaderMobile = styled.header`
         color: #303630;
       }
     }
-    .login{
+    .login {
       color: #fff;
       text-decoration: none;
       font-size: 1.5rem;
@@ -69,8 +70,6 @@ export const HeaderMobile = styled.header`
       padding-top: 5rem;
       row-gap: 50px;
       font-size: 25px;
-      
-      
     }
   }
 `;

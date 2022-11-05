@@ -30,8 +30,8 @@ public class Teste {
 		func.setLogin("lrc");
 		func.setSenha("040304");
 		
-		FuncionarioBO fBO = new FuncionarioBO();
-		System.out.println(fBO.excluirFuncionario(func.getIdFunc()));
+//		FuncionarioBO fBO = new FuncionarioBO();
+//		System.out.println(fBO.excluirFuncionario(func.getIdFunc()));
 		
 		ProdutoTO prod = new ProdutoTO();
 		prod.setIdProduto(2);

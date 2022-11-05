@@ -4,20 +4,34 @@ import br.com.dragonfly.bo.ContatoEmpresaBO;
 import br.com.dragonfly.bo.EmpresaBO;
 import br.com.dragonfly.bo.EnderecoEmpresaBO;
 import br.com.dragonfly.bo.FormaPagtoBO;
+import br.com.dragonfly.bo.FuncionarioBO;
 import br.com.dragonfly.bo.PagamentoBO;
 import br.com.dragonfly.bo.PedidoBO;
 import br.com.dragonfly.bo.ProdutoBO;
 import br.com.dragonfly.dao.EnderecoEmpresaDAO;
+import br.com.dragonfly.dao.FuncionarioDAO;
 import br.com.dragonfly.to.ContatoEmpresaTO;
 import br.com.dragonfly.to.EmpresaTO;
 import br.com.dragonfly.to.EnderecoEmpresaTO;
 import br.com.dragonfly.to.FormaPagtoTO;
+import br.com.dragonfly.to.FuncionarioTO;
 import br.com.dragonfly.to.PagamentoTO;
 import br.com.dragonfly.to.PedidoTO;
 import br.com.dragonfly.to.ProdutoTO;
 
 public class Teste {
 	public static void main(String[] args) {
+		
+		FuncionarioTO func = new FuncionarioTO();
+		func.setIdFunc(12);
+		func.setNmFunc("Leonardo Ramos Costa");
+		func.setCpf(49985018877l);
+		func.setDtNasc("04/03/2004");
+		func.setLogin("lrc");
+		func.setSenha("040304");
+		
+		FuncionarioBO fBO = new FuncionarioBO();
+		System.out.println(fBO.excluirFuncionario(func.getIdFunc()));
 		
 		ProdutoTO prod = new ProdutoTO();
 		prod.setIdProduto(2);
@@ -38,8 +52,8 @@ public class Teste {
 		empresa.setSenha("27364");
 		empresa.setCnpj(357234578);
 		
-		EmpresaBO eBO = new EmpresaBO();
-		System.out.println(eBO.excluiEmpresa(empresa.getIdEmpresa()));
+//		EmpresaBO eBO = new EmpresaBO();
+//		System.out.println(eBO.excluiEmpresa(empresa.getIdEmpresa()));
 		
 		
 		EnderecoEmpresaTO endereco = new EnderecoEmpresaTO();

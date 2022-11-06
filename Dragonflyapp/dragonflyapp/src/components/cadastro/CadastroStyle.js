@@ -16,13 +16,12 @@ export const Form = styled.form`
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
+  row-gap: 5px;
+  justify-content: center;
   .div-logradouro {
     display: flex;
     justify-content: left;
     column-gap: 10px;
-    input {
-      width: 100%;
-    }
     #nrLogradouro {
       width: 50px;
     }
@@ -31,20 +30,19 @@ export const Form = styled.form`
     color: #8cd19b;
     margin: 0;
   }
-  input {
+  select {
+    width: 100%;
+  }
+  input, select{
     outline: none;
     border: none;
-    height: 1.5rem;
-    margin: 5px 0;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
+
     :focus {
       outline: solid 2px #8cd19b;
     }
-    ::-webkit-inner-spin-button{
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
+    
   }
   .divButtons {
     display: flex;
@@ -66,6 +64,4 @@ export const Button = styled.button`
     background-color: #1c8d19;
     transform: scale(1.1);
   }
-  
-  
 `;

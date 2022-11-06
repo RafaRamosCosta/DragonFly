@@ -80,6 +80,7 @@ public class EnderecoEmpresaDAO implements IDAO{
 				return "Erro ao excluir!";
 			}
 		} catch (Exception e) {
+			Conexao.fechaConexao(con);
 			e.printStackTrace();
 			return e.getMessage();
 		}

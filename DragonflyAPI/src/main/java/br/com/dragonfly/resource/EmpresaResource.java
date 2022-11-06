@@ -33,7 +33,7 @@ public class EmpresaResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public EmpresaTO buscaEmp(int id) {
+	public EmpresaTO buscaEmp(@PathParam("id")int id) {
 		return empBO.listaEmpresa(id);
 	}
 	

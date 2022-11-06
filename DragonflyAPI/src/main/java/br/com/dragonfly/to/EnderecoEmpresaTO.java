@@ -13,6 +13,7 @@ public class EnderecoEmpresaTO {
 	public EnderecoEmpresaTO(int idEndEmp, int nrLog, EmpresaTO empresa, String nmLog, String nmBairro, String zona) {
 		this.idEndEmp = idEndEmp;
 		this.nrLog = nrLog;
+		this.nmLog = nmLog;
 		this.empresa = empresa;
 		this.nmBairro = nmBairro;
 		this.zona = zona;

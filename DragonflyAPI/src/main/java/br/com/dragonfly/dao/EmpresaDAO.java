@@ -132,4 +132,29 @@ public class EmpresaDAO implements IDAO{
 			return null;
 		}
 	}
+	
+	public EmpresaTO login(EmpresaTO emp) {
+		String sql = "SELECT * FROM T_DF_EMPRESA WHERE ds_login = ? and ds_senha = ?";
+		EmpresaTO empresa = new EmpresaTO();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, emp.getLogin());
+			ps.setString(2, emp.getSenha());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int idEmp = rs.getInt(1);
+				String nmFantasia = rs.getString(2);
+				String rzSocial = rs.getString(3);
+				long cnpj = rs.getLong(4);
+				String login = rs.getString(5);
+				String senha = rs.getString(6);
+				empresa = new EmpresaTO(idEmp, cnpj, nmFantasia, rzSocial, login, senha);
+			}
+			Conexao.fechaConexao(con);
+			return empresa;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

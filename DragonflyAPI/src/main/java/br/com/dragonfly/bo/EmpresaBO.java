@@ -36,4 +36,9 @@ public class EmpresaBO {
 		eDAO = new EmpresaDAO();
 		return eDAO.listaEmpresa(id);
 	}
+	
+	public EmpresaTO login(EmpresaTO emp) {
+		eDAO = new EmpresaDAO();
+		return eDAO.login(emp);
+	}
 }

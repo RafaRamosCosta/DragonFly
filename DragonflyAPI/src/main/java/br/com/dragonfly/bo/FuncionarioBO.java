@@ -29,4 +29,8 @@ public class FuncionarioBO {
 	public FuncionarioTO listaFuncionario(int id) {
 		return fDAO.listaFuncs(id);
 	}
+	
+	public FuncionarioTO login(FuncionarioTO func) {
+		return fDAO.login(func);
+	}
 }

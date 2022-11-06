@@ -37,6 +37,7 @@ public class FuncionarioResource {
 		return fBO.listaFuncionario(id);
 	}
 	
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrar(FuncionarioTO func, @Context UriInfo uriInfo) {

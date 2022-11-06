@@ -29,6 +29,9 @@ export const Footer = styled.footer`
           color: #000;
           transform: scale(1.25);
         }
+        :focus {
+          outline: solid 2px #8cd19b;
+        }
       }
       ul {
         margin: 0;
@@ -47,5 +50,18 @@ export const Footer = styled.footer`
   }
   p {
     margin: 2rem 0 0 0;
+    text-align: center;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 0.8rem;
+    div {
+      flex-direction: column;
+      row-gap: 10px;
+    }
+  }
+  @media screen and (min-width: 702px) and (max-width: 1255px) {
+    div {
+      column-gap: 20px;
+    }
   }
 `;

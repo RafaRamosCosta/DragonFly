@@ -27,7 +27,7 @@ export const FormLogin = styled.form`
     border: none;
     border-radius: 5px;
     :focus {
-        outline: solid 2px #8cd19b;
+      outline: solid 2px #8cd19b;
     }
   }
 `;
@@ -41,8 +41,12 @@ export const Button = styled.button`
   color: #fff;
   margin-top: 10px;
   transition: all 0.3s ease-in-out;
+
   :hover {
     background-color: #1c8d19;
     transform: scale(1.05);
+  }
+  :focus {
+    outline: solid 2px #8cd19b;
   }
 `;

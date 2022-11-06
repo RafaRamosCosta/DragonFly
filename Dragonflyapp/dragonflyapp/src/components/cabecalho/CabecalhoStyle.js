@@ -13,9 +13,9 @@ export const Header = styled.header`
   img {
     width: 12vw;
     transition: all 0.3s ease-in-out;
-      :hover {
-        transform: scale(1.25);
-      }
+    :hover {
+      transform: scale(1.25);
+    }
   }
   h2 {
     font-size: 2rem;

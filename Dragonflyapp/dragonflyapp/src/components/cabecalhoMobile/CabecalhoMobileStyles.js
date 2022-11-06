@@ -1,26 +1,46 @@
 import styled from 'styled-components';
 
 export const HeaderMobile = styled.header`
-  @media screen and (min-width: 769px) {
-    width: 100%;
-    display: none;
-  }
-  background-color: #0c872b;
-  div,
-  h2 {
-    display: inline;
-  }
-
-  img {
-    width: 150px;
-  }
+  display: flex;
   position: fixed;
   width: 100%;
   z-index: 10;
   top: 0;
+  background-color: #0c872b;
+  justify-content: space-around;
+  @media screen and (min-width: 769px) {
+    width: 100%;
+    display: none;
+  }
+
+  div,
+  h2 {
+    display: inline;
+    @media screen and (max-width: 384px) {
+      font-size: 1rem;
+    }
+  }
+  h2 {
+    @media screen and (max-width: 800px) {
+      margin-left: 30vw;
+      margin-right: 10vw;
+    }
+    @media screen and (max-width: 550px) {
+      margin-left: 20vw;
+      margin-right: 5vw;
+    }
+    @media screen and (max-width: 455px) {
+      margin-left: 10vw;
+    }
+  }
+  img {
+    width: 100px;
+  }
+
   nav {
     position: absolute;
-    top: 88px;
+    top: 55px;
+    left: 0;
     display: flex;
     padding-left: 20px;
     align-self: flex-start;

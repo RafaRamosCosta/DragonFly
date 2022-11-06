@@ -6,25 +6,33 @@ export const DivHome = styled.div`
   justify-content: center;
   align-items: center;
   row-gap: 3rem;
+  width: 100%;
   section {
-    width: 80vw;
-    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 60vw;
     img {
-      width: 15%;
+      min-width: 80px;
+      max-width: 20%;
       transition: all 0.3s ease-in-out;
       :hover {
         transform: scale(1.1);
       }
     }
+    @media screen and (max-width: 610px) {
+      text-align: center;
+      font-size: 0.8rem;
+      row-gap: 20px;
+    }
   }
 `;
 
 export const DivLinkProdutos = styled.div`
-  transition: all 0.3s ease-in-out;
   margin-top: 25px;
-  width: fit-content;
-
   .link-produtos {
+    transition: all 0.3s ease-in-out;
     padding: 5px;
     font-size: 20px;
     color: #0c872b;
@@ -36,13 +44,23 @@ export const DivLinkProdutos = styled.div`
       background-color: #0c872b;
       color: #fff;
     }
+    :focus {
+      outline: solid 2px #8cd19b;
+    }
+  }
+  #link-produto-section {
+    @media screen and (max-width: 500px) {
+      font-size: 12px;
+    }
   }
 `;
 
 export const DivApp = styled.div`
+  margin-top: 50px;
   max-width: 900px;
   display: flex;
   align-items: center;
+  width: 100%;
   @media screen and (max-width: 900px) {
     margin-top: 150px;
     height: 400px;
@@ -51,10 +69,6 @@ export const DivApp = styled.div`
 
 export const DivInner = styled.div`
   display: flex;
-  @media screen and (max-width: 780px) {
-    padding-left: 280px;
-   
-  }
 `;
 
 export const DivCarrossel = styled.div`
@@ -64,13 +78,14 @@ export const DivCarrossel = styled.div`
 
 export const DivItem = styled.div`
   min-width: 400px;
+  min-height: 400px;
   padding: 8px;
   transition: all 0.2s ease-in-out;
   text-align: center;
   :hover {
     transform: scale(1.02);
   }
-  
+
   img {
     border-radius: 10px;
     pointer-events: none;

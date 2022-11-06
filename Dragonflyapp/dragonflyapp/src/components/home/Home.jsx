@@ -85,7 +85,8 @@ export default function Home() {
         </p>
         <p>
           Nós estamos sempre atrás de inovação e por isso buscamos trazê-la para
-          todos, dessa maneira a Dragonfly disponibiliza drones para qualquer tamanho de empresa, desde as pequenas até as grandes.
+          todos, dessa maneira a Dragonfly disponibiliza drones para qualquer
+          tamanho de empresa, desde as pequenas até as grandes.
         </p>
         <p>
           Se você busca dar um upgrade nas entregas da sua empresa e ao mesmo
@@ -93,8 +94,11 @@ export default function Home() {
           certo.
         </p>
         <DivLinkProdutos className="link-produtos-div">
-          <Link to="/produtos" className="link-produtos">
-            Dê uma olhada nos nossos produtos
+          <Link
+            id="link-produto-section"
+            to="/produtos"
+            className="link-produtos">
+            Confira nossos produtos
           </Link>
         </DivLinkProdutos>
       </section>

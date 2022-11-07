@@ -5,10 +5,15 @@ import Rodape from './components/rodape/Rodape';
 import Rotas from './components/routes/Rotas';
 
 export default function App() {
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    window.location = '/';
+  }
+
   return (
     <div>
-      <Cabecalho />
-      <CabecalhoMobile />
+      <Cabecalho logout={handleLogout}/>
+      <CabecalhoMobile logout={handleLogout}/>
       <Rotas />
       <Rodape />
     </div>

@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import tutorial from '../../videos/tutorial.mp4';
+import poster from '../../images/postertutorial.png';
 import { Link } from 'react-router-dom';
-import { DivProd, PageProd } from './ProdutoStyle';
+import { DivProd, DivVideoWrapper, PageProd } from './ProdutoStyle';
 
 export default function Produto() {
-  const userData = sessionStorage.getItem("emp");
-
+  const userData = JSON.parse(sessionStorage.getItem('user'));
   const [produtos, setProdutos] = useState([]);
+
   useEffect(() => {
-    axios('http://localhost:8080/DragonflyAPI/rest/produto').then((response) =>
-      setProdutos(response.data)
-    );
-    if (!userData) {
-      window.location = "/login";
+    if (userData) {
+      axios('http://localhost:8080/DragonflyAPI/rest/produto').then(
+        (response) => setProdutos(response.data)
+      );
+    } else {
+      window.location = '/login';
     }
   }, []);
-
-  
   return (
     <PageProd>
-      <section>
-        <h1>Tutorial de Pilotagem</h1>
-      </section>
+      <h1 id="main-h1">
+        {userData?.nmFantasia
+          ? `Aproveite nossas ofertas ${userData.nmFantasia}!`
+          : `Produtos cadastrados!`}
+      </h1>
+       <a id="linkTutorial" href="#tutorial">Assista o Tutorial de Pilotagem</a>   
       {produtos.map((produto, i) => (
         <DivProd key={i}>
           <h1>{produto.nmProduto}</h1>
@@ -37,6 +41,17 @@ export default function Produto() {
           </Link>
         </DivProd>
       ))}
+      <section>
+        <DivVideoWrapper id='tutorial'>
+        <h1>Tutorial de Pilotagem</h1>
+          <video
+            controls
+            loop
+            src={tutorial}
+            poster={poster}
+          />
+        </DivVideoWrapper>
+      </section>
     </PageProd>
   );
 }

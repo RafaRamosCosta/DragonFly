@@ -111,7 +111,7 @@ public class ProdutoDAO implements IDAO{
 	}
 	
 	public ProdutoTO listaProduto(int id) {
-		String sql = "SELECT * FROM T_DF_PRODUTO WHERE id_produto = ?";
+		String sql = "SELECT * FROM T_DF_PRODUTO WHERE id_funcionario = ?";
 		ProdutoTO produto = new ProdutoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);

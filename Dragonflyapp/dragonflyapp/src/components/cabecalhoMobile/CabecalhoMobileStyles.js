@@ -49,7 +49,7 @@ export const HeaderMobile = styled.header`
     height: 100vh;
     background-color: #0c872b;
     width: 220px;
-    #login-icon {
+    .logicon{
       width: 25px;
     }
     a {
@@ -57,10 +57,6 @@ export const HeaderMobile = styled.header`
       text-decoration: none;
       font-size: 1.5rem;
       transition: all 0.3s ease-in-out;
-      :hover {
-        transform: scale(1.25);
-        color: #303630;
-      }
     }
     .login {
       color: #fff;
@@ -68,9 +64,11 @@ export const HeaderMobile = styled.header`
       font-size: 1.5rem;
       align-content: center;
       transition: all 0.3s ease-in-out;
-      :hover {
-        transform: scale(1.25);
-        color: #303630;
+      #btn-logout {
+        background-color: #0c872b;
+        border: none;
+        color: white;
+        font-size: 22px;
       }
     }
   }

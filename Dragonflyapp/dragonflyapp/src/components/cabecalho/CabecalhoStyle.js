@@ -33,5 +33,26 @@ export const Header = styled.header`
         color: #303630;
       }
     }
+
+    #btn-logout {
+      background-color: #0c872b;
+      border: none;
+      color: white;
+      font-size: 15px;
+      transition: all 0.3s ease-in-out;
+      :hover {
+        transform: scale(1.25);
+        color: #303630;
+        img {
+          transform: none;
+        }
+      }
+    }
+    #loginLink {
+      img:hover {
+        transform: none;
+      }
+    }
+    
   }
 `;

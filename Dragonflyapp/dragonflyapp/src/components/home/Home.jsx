@@ -5,6 +5,7 @@ import controleDroneCelular from '../../images/controleDroneCelular.jpg';
 import droneNaMao from '../../images/droneNaMao.jpg';
 import dronesGemeos from '../../images/dronesGemeos.jpg';
 import droneCima from '../../images/droneCima.jpg';
+import droneDelivery from '../../images/droneDelivery.jpg';
 
 import { motion } from 'framer-motion';
 import {
@@ -19,7 +20,7 @@ import {
 import dragonfly from '../../images/dragonfly.png';
 import { Link } from 'react-router-dom';
 
-const images = [controleDroneCelular, droneNaMao, dronesGemeos, droneCima];
+const images = [droneDelivery, controleDroneCelular, droneNaMao, dronesGemeos, droneCima];
 
 export default function Home() {
   const carousel = useRef();
@@ -49,10 +50,10 @@ export default function Home() {
                   <h2>Drones fáceis de manusear 🕹️</h2>
                 ) : img === dronesGemeos ? (
                   <h2>Os mais velozes do mercado 🚀</h2>
-                ) : (
+                ) : img === droneCima ? (
                   <h2>Ache o ideal para sua empresa 💡</h2>
-                )}
-                <img src={img} alt="drone" style={{ width: '100%' }} />
+                ) : <h2>Entregas rápidas 📦🚀</h2>}
+                <img src={img} alt="drone" style={{ width: '100%', height: '70%' }} />
                 <DivLinkProdutos
                   className="link-produtos-div"
                   style={{ width: '100%' }}>
@@ -71,7 +72,7 @@ export default function Home() {
           <img src={dragonfly} alt="" align="center" />
         </h1>
         <p>
-          A Dragonfly Drones é um e-commerce de drones para entregas, em busca
+          A Dragonfly Drones é um e-commerce de drones para entregas em busca
           de apoiar o meio ambiente diminuindo a poluição e também preservar a
           vida humana diminuindo os acidentes de trânsito.
         </p>
@@ -89,8 +90,8 @@ export default function Home() {
           tamanho de empresa, desde as pequenas até as grandes.
         </p>
         <p>
-          Se você busca dar um upgrade nas entregas da sua empresa e ao mesmo
-          tempo auxiliar na preservação do meio ambiente, você está no lugar
+          Se você busca dar um upgrade nas entregas 📦 da sua empresa e ao mesmo
+          tempo auxiliar na preservação do meio ambiente 🌳, você está no lugar
           certo.
         </p>
         <DivLinkProdutos className="link-produtos-div">

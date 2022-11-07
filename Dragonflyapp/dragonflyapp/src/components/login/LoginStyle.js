@@ -6,6 +6,7 @@ export const DivLogin = styled.div`
   justify-content: center;
   align-items: center;
   padding: 3.64rem;
+  margin-top: 10px;
 `;
 
 export const FormLogin = styled.form`

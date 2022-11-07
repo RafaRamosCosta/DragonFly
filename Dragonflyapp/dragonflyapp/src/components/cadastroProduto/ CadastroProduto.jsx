@@ -1,9 +1,18 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DivForm, FormProd } from './CadastroProdutoStyle';
 
 export default function CadastroProduto() {
+  const userData = JSON.parse(sessionStorage.getItem('user'));
+
+  useEffect(() => {
+    if (!userData.nmFunc) {
+      window.location.href = '/login';
+    }
+  }, [])
+  
   const [novoProduto, setNovoProduto] = useState({
+    func: userData,
     nmProduto: '',
     dsProduto: '',
     vlUnitario: '',
@@ -27,7 +36,7 @@ export default function CadastroProduto() {
   };
   return (
     <DivForm>
-      <h1>Cadastre um Produto!</h1>
+      <h1>Olá {userData.nmFunc}, Cadastre um Produto!</h1>
       <FormProd onSubmit={handleSubmit}>
         <label htmlFor="nmProduto">Nome do Produto</label>
         <input

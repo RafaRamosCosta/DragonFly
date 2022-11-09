@@ -10,7 +10,7 @@ export const DivHome = styled.div`
   section {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     padding: 10px;
     width: 60vw;
     img {
@@ -31,16 +31,20 @@ export const DivHome = styled.div`
 
 export const DivLinkProdutos = styled.div`
   margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .link-produtos {
-    transition: all 0.3s ease-in-out;
     padding: 5px;
     font-size: 20px;
     color: #0c872b;
     text-decoration: none;
     border: #0c872b solid 2px;
     border-radius: 50px;
+    
     transition: all 0.3s ease-in-out;
     :hover {
+      transform: scale(1.1);
       background-color: #0c872b;
       color: #fff;
     }
@@ -48,7 +52,7 @@ export const DivLinkProdutos = styled.div`
       outline: solid 2px #8cd19b;
     }
   }
-  #link-produto-section {
+  .link-produtos-div {
     @media screen and (max-width: 500px) {
       font-size: 12px;
     }
@@ -61,6 +65,7 @@ export const DivApp = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  
   @media screen and (max-width: 900px) {
     margin-top: 150px;
     height: 400px;
@@ -74,6 +79,7 @@ export const DivInner = styled.div`
 export const DivCarrossel = styled.div`
   cursor: grab;
   overflow: hidden;
+  
 `;
 
 export const DivItem = styled.div`

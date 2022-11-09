@@ -20,7 +20,13 @@ import {
 import dragonfly from '../../images/dragonfly.png';
 import { Link } from 'react-router-dom';
 
-const images = [droneDelivery, controleDroneCelular, droneNaMao, dronesGemeos, droneCima];
+const images = [
+  droneDelivery,
+  controleDroneCelular,
+  droneNaMao,
+  dronesGemeos,
+  droneCima,
+];
 
 export default function Home() {
   const carousel = useRef();
@@ -52,12 +58,18 @@ export default function Home() {
                   <h2>Os mais velozes do mercado 🚀</h2>
                 ) : img === droneCima ? (
                   <h2>Ache o ideal para sua empresa 💡</h2>
-                ) : <h2>Entregas rápidas 📦🚀</h2>}
-                <img src={img} alt="drone" style={{ width: '100%', height: '70%' }} />
+                ) : (
+                  <h2>Entregas rápidas 📦🚀</h2>
+                )}
+                <img
+                  src={img}
+                  alt="drone"
+                  style={{ width: '100%', height: '70%' }}
+                />
                 <DivLinkProdutos
                   className="link-produtos-div"
                   style={{ width: '100%' }}>
-                  <Link to="/produtos" className="link-produtos">
+                  <Link to="/produtos" className="link-produtos" id="confira">
                     Confira
                   </Link>
                 </DivLinkProdutos>
@@ -72,12 +84,12 @@ export default function Home() {
           <img src={dragonfly} alt="" align="center" />
         </h1>
         <p>
-          A Dragonfly Drones é um e-commerce de drones para entregas em busca
-          de apoiar o meio ambiente diminuindo a poluição e também preservar a
-          vida humana diminuindo os acidentes de trânsito.
+          A Dragonfly Drones é um e-commerce de drones para entregas em busca de
+          apoiar o meio ambiente diminuindo a poluição e também preservar a vida
+          humana diminuindo os acidentes de trânsito.
         </p>
         <p>
-          Temos como nossa parceira e fornecedora a empresa &nbsp;&nbsp;
+         Temos como nossa parceira e fornecedora a empresa &nbsp;&nbsp;
           <a href="https://www.stellantis.com" target="_blank" rel="noreferrer">
             <img src={stellantis} alt="" />
           </a>
@@ -85,7 +97,7 @@ export default function Home() {
           fornecemos a solução ideal para sua empresa e para o meio ambiente.
         </p>
         <p>
-          Nós estamos sempre atrás de inovação e por isso buscamos trazê-la para
+            Nós estamos sempre atrás de inovação e por isso buscamos trazê-la para
           todos, dessa maneira a Dragonfly disponibiliza drones para qualquer
           tamanho de empresa, desde as pequenas até as grandes.
         </p>

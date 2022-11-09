@@ -1,20 +1,27 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FormLogin, Button, DivLogin } from './LoginStyle';
 
 export default function Login() {
-  const [userType, setUserType] = useState('');
+  const [userType, setUserType] = useState('emp');
   const [user, setUser] = useState({});
+  const [link, setLink] = useState('/cadastro');
 
-  const handleRadioBtnChange = (e) => {
+
+  const handleRadioBtnClick = (e) => {
     setUserType(e.target.value);
     console.log(userType);
   };
 
   const handleInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
   };
+  
+  useEffect(() => {
+    userType === 'emp' ? setLink('/cadastro') : setLink('/cadastroFuncionario');
+    console.log(link);
+  }, [userType]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +34,7 @@ export default function Login() {
       data: user,
     })
       .then((response) => {
-        if (response) {
+        if (response.data !== '') {
           sessionStorage.setItem("user", JSON.stringify(response.data));
           console.log(response);
           if (userType === 'emp') {
@@ -43,31 +50,41 @@ export default function Login() {
       .catch((error) => {
         if (error.response) {
           console.log(error.response);
+          alert('Erro ao conectar com o servidor');
         } else if (error.request) {
           console.log(error.request);
+          alert('Erro ao conectar com o servidor');
         } else {
           console.log('Error', error.message);
         }
       });
   };
+
+  
   return (
     <DivLogin>
       <FormLogin onSubmit={handleSubmit}>
         <h1>Faça seu Login</h1>
-        <label htmlFor="user">Empresa</label>
-        <input
-          type="radio"
-          name="user"
-          value="emp"
-          onChange={handleRadioBtnChange}
-        />
-        <label htmlFor="user">Funcionario</label>
-        <input
-          type="radio"
-          name="user"
-          value="func"
-          onChange={handleRadioBtnChange}
-        />
+
+        <div>
+          <input
+              type="radio"
+              name="user"
+              value="emp"
+              onClick={handleRadioBtnClick}
+              id='r1'
+              defaultChecked/>
+          <label htmlFor="user" for='r1'>Empresa</label>
+
+          <input
+              type="radio"
+              name="user"
+              value="func"
+              onClick={handleRadioBtnClick}
+              id='r2'/>
+          <label htmlFor="user" for='r2'>Funcionário</label>
+        </div>
+
         <label htmlFor="login">Login</label>
         <input
           type="text"
@@ -85,6 +102,7 @@ export default function Login() {
         />
 
         <Button type="submit">Logar</Button>
+        <p>Não tem uma conta?<Link to={link}>Cadastre-se aqui!</Link> </p>
       </FormLogin>
     </DivLogin>
   );

@@ -23,14 +23,40 @@ export const FormLogin = styled.form`
     margin: 0;
     text-align: center;
   }
+  div{
+    display: flex;
+    justify-content: center;
+    label {
+      margin: 0 15px 0 2px;
+      
+    }
+    #r1, #r2 {
+        outline: none;
+        border-radius: 50%;
+      }
+    
+  }
+  
   input {
     padding: 10px;
     border: none;
     border-radius: 5px;
+    accent-color: #77bd86;
     :focus {
-      outline: solid 2px #8cd19b;
+      outline: solid 2px #77bd86;
     }
   }
+  p {
+    a {
+    color: #0c5c;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    :hover {
+      color: #8cd19b;
+      text-decoration: underline;
+    }
+  }
+}
 `;
 
 export const Button = styled.button`

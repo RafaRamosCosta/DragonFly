@@ -6,16 +6,29 @@ export default function Rodape() {
   return (
     <Footer>
       <div>
-        <section>
-          <h2 id="contato">Fale conosco</h2>
+        <section id='contato'>
+          <h2>Fale conosco</h2>
           <ul>
-            <li>📞 (11) 91111-1111</li>
-            <li>📧 dragonfly.@gmail.com</li>
+            <li>
+              <a href="#">📞 (11) 91111-1111</a>
+            </li>
+            <li>
+              <a href="mailto:dragonfly.@gmail.com">📧 dragonfly.@gmail.com</a>
+            </li>
           </ul>
+          OU
+          <div className="ContatoFormDiv">
+          <form action="">
+            <label>Nos mande uma mensagem</label>
+            <input type="text" placeholder="Seu nome" />
+            <textarea placeholder="Nos mande uma mensagem" />
+            <button onClick={"submit"}>Enviar</button>
+          </form>
+          </div>
         </section>
 
-        <section>
-          <h2 id="mapa">Mapa do site</h2>
+        <section className='mapa'>
+          <h2>Mapa do site</h2>
           <div className="divLinks">
             <Link to="/">Página Inicial</Link>
             <Link to="/cadastro">Cadastro</Link>
@@ -24,8 +37,8 @@ export default function Rodape() {
           </div>
         </section>
 
-        <section>
-          <h2 id="redes">Redes Sociais</h2>
+        <section className='redes'>
+          <h2>Redes Sociais</h2>
           <div className="divLinks">
               <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
                 <img width="30px" src="https://img.icons8.com/fluent/48/000000/facebook-new.png" alt="Facebook" />
@@ -42,7 +55,7 @@ export default function Rodape() {
           </div>  
         </section>
 
-        <section>
+        <section className='cursos'>
           <h2>Pilotagem</h2>
           <Link to="/produtos">Tutorial</Link>
           <Link to="/curso">Curso de Pilotagem</Link>

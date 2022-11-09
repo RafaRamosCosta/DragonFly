@@ -38,7 +38,10 @@ export const Form = styled.form`
     border: none;
     border-radius: 5px;
     padding: 10px;
-
+    ::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
     :focus {
       outline: solid 2px #8cd19b;
     }

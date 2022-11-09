@@ -87,7 +87,7 @@ public class EmpresaDAO implements IDAO{
 	}
 	
 	public ArrayList<EmpresaTO> listaEmpresas() {
-		String sql = "SELECT * FROM T_DF_EMPRESA";
+		String sql = "SELECT * FROM T_DF_EMPRESA ORDER BY 1";
 		ArrayList<EmpresaTO> empresas = new ArrayList<EmpresaTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -151,7 +151,11 @@ public class EmpresaDAO implements IDAO{
 				empresa = new EmpresaTO(idEmp, cnpj, nmFantasia, rzSocial, login, senha);
 			}
 			Conexao.fechaConexao(con);
-			return empresa;
+			if (empresa.getIdEmpresa() != 0) {
+				return empresa;
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

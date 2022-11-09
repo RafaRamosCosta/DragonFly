@@ -79,7 +79,6 @@ public class Teste {
 		pedido.setProduto(prod);
 		pedido.setEmpresa(empresa);
 		pedido.setDtPedido("01/11/2022");
-		pedido.setQtProduto(30);
 		
 //		PedidoBO pBO = new PedidoBO();
 //		System.out.println(pBO.excluiPedido(pedido.getIdPedido()));

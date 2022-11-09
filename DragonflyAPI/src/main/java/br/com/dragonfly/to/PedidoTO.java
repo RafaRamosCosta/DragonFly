@@ -8,17 +8,15 @@ public class PedidoTO {
 	private ProdutoTO produto;
 	private EmpresaTO empresa;
 	private String dtPedido;
-	private int qtProduto;
 
 	public PedidoTO() {
 	}
 
-	public PedidoTO(int idPedido, ProdutoTO produto, EmpresaTO empresa, String dtPedido, int qtProduto) {
+	public PedidoTO(int idPedido, ProdutoTO produto, EmpresaTO empresa, String dtPedido) {
 		this.idPedido = idPedido;
 		this.produto = produto;
 		this.empresa = empresa;
 		this.dtPedido = dtPedido;
-		this.qtProduto = qtProduto;
 	}
 
 	public int getIdPedido() {
@@ -51,14 +49,6 @@ public class PedidoTO {
 
 	public void setDtPedido(String dtPedido) {
 		this.dtPedido = dtPedido;
-	}
-
-	public int getQtProduto() {
-		return qtProduto;
-	}
-
-	public void setQtProduto(int qtProduto) {
-		this.qtProduto = qtProduto;
 	}
 
 }

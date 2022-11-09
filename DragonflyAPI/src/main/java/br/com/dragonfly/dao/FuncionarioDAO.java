@@ -148,7 +148,11 @@ public class FuncionarioDAO implements IDAO {
 				func = new FuncionarioTO(idFunc, nmFunc, cpf, dtNasc, login, senha);
 			}
 			Conexao.fechaConexao(con);
-			return func;
+			if (func.getIdFunc() != 0) {
+				return func;
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

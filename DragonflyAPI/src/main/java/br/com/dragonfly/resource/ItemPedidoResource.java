@@ -16,34 +16,33 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import br.com.dragonfly.bo.ContatoEmpresaBO;
-import br.com.dragonfly.to.ContatoEmpresaTO;
+import br.com.dragonfly.bo.ItemPedidoBO;
+import br.com.dragonfly.to.ItemPedidoTO;
 
-@Path("/contatoempresa")
-public class ContatoEmpresaResource {
-	
-	private ContatoEmpresaBO contBO = new ContatoEmpresaBO();
-	
+@Path("/itempedido")
+public class ItemPedidoResource {
+	ItemPedidoBO iPBO = new ItemPedidoBO();
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<ContatoEmpresaTO> buscaContatos() {
-		return contBO.listaContatos();
+	public ArrayList<ItemPedidoTO> buscaItens() {
+		return iPBO.listaItens();
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public ContatoEmpresaTO buscaContato(@PathParam("id") int id) {
-		return contBO.listaContato(id);
+	public ItemPedidoTO buscaItem(@PathParam("id") int id) {
+		return iPBO.listaItem(id);
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response cadastrar(ContatoEmpresaTO cont, @Context UriInfo uriInfo) {
-		String resp = contBO.cadastraContato(cont);
+	public Response cadastraItem(ItemPedidoTO item, @Context UriInfo uriInfo) {
+		String resp = iPBO.cadastraItem(item);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
-			builder.path(Integer.toString(cont.getIdContEmp()));
+			builder.path(Integer.toString(item.getIdItemPedido()));
 		}
 		return Response.created(builder.build()).build();
 	}
@@ -51,8 +50,8 @@ public class ContatoEmpresaResource {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public Response atualizar(ContatoEmpresaTO cont, @PathParam("id") int id) {
-		String resp = contBO.alteraContato(cont);
+	public Response atualizaItem(ItemPedidoTO item, @PathParam("id") int id) {
+		String resp = iPBO.alteraItem(item);
 		if (resp.equals("Alterado com sucesso!")) {
 			return Response.ok().build();
 		} else {
@@ -62,7 +61,7 @@ public class ContatoEmpresaResource {
 	
 	@DELETE
 	@Path("/{id}")
-	public void deletar(@PathParam("id") int id) {
-		contBO.excluiContato(id);
+	public void deletaItem(@PathParam("id") int id) {
+		iPBO.excluiItem(id);
 	}
 }

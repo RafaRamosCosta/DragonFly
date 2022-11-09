@@ -5,29 +5,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import br.com.dragonfly.to.EmpresaTO;
+import br.com.dragonfly.to.ItemPedidoTO;
 import br.com.dragonfly.to.PedidoTO;
 import br.com.dragonfly.to.ProdutoTO;
 
-
-public class PedidoDAO {
+public class ItemPedidoDAO implements IDAO {
 	private Connection con = null;
-	private PedidoTO pedido;
-	
-	public PedidoDAO() {
+	private ItemPedidoTO itemPedido;
+
+	public ItemPedidoDAO() {
 		this.con = new Conexao().abreConexao();
 	}
-	
+
 	public String inserir(Object obj) {
-		pedido = (PedidoTO) obj;
-		String sql = "INSERT INTO T_DF_PEDIDO(id_pedido, id_produto, id_empresa, dt_pedido) "
-				+ "VALUES(?, ?, ?, TO_DATE(?, 'DD/MM/YYYY'))";
+		itemPedido = (ItemPedidoTO) obj;
+		String sql = "INSERT INTO T_DF_ITEM_PEDIDO(id_item_pedido, id_pedido, id_produto, qt_item_pedido) "
+				+ "VALUES(?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, null);
-			ps.setInt(2, pedido.getProduto().getIdProduto());
-			ps.setInt(3, pedido.getEmpresa().getIdEmpresa());
-			ps.setString(4, pedido.getDtPedido());
+			ps.setInt(2, itemPedido.getPedido().getIdPedido());
+			ps.setInt(3, itemPedido.getProduto().getIdProduto());
+			ps.setInt(4, itemPedido.getQtItemPedido());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -43,19 +42,19 @@ public class PedidoDAO {
 	}
 	
 	public String alterar(Object obj) {
-		pedido = (PedidoTO) obj;
-		String sql = "UPDATE T_DF_PEDIDO SET dt_pedido = ? WHERE id_pedido = ?";
+		itemPedido = (ItemPedidoTO) obj;
+		String sql = "UPDATE T_DF_ITEM_PEDIDO SET qt_item_pedido = ?, WHERE id_item_pedido = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, pedido.getDtPedido());
-			ps.setInt(2, pedido.getIdPedido());
+			ps.setInt(1, itemPedido.getQtItemPedido());
+			ps.setInt(2, itemPedido.getIdItemPedido());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
 				return "Alterado com sucesso!";
 			} else {
 				Conexao.fechaConexao(con);
-				return "Erro ao alterado!";
+				return "Erro ao alterar!";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,11 +63,11 @@ public class PedidoDAO {
 	}
 	
 	public String excluir(Object obj) {
-		pedido = (PedidoTO) obj;
-		String sql = "DELETE FROM T_DF_PEDIDO WHERE id_pedido = ?";
+		itemPedido = (ItemPedidoTO) obj;
+		String sql = "DELETE FROM T_DF_ITEM_PEDIDO WHERE id_item_pedido = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, pedido.getIdPedido());
+			ps.setInt(1, itemPedido.getIdItemPedido());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -83,49 +82,48 @@ public class PedidoDAO {
 		}
 	}
 	
-	public ArrayList<PedidoTO> listaPedidos() {
-		String sql = "SELECT * FROM T_DF_PEDIDO";
-		ArrayList<PedidoTO> pedidos = new ArrayList<PedidoTO>();
+	public ArrayList<ItemPedidoTO> listaItens() {
+		String sql = "SELECT * FROM T_DF_ITEM_PEDIDO";
+		ArrayList<ItemPedidoTO> itens = new ArrayList<ItemPedidoTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				int idPedido = rs.getInt(1);
+				int idItemPedido = rs.getInt(1);
+				PedidoTO pedido = new PedidoTO();
+				pedido.setIdPedido(rs.getInt(2));
 				ProdutoTO produto = new ProdutoTO();
-				produto.setIdProduto(rs.getInt(2));
-				EmpresaTO empresa = new EmpresaTO();
-				empresa.setIdEmpresa(rs.getInt(3));
-				String dtPedido = rs.getString(4);
-				pedidos.add(new PedidoTO(idPedido, produto, empresa, dtPedido));
+				produto.setIdProduto(rs.getInt(3));
+				int qtItemProduto = rs.getInt(4);
+				itens.add(new ItemPedidoTO(idItemPedido, pedido, produto, qtItemProduto));
 			}
 			Conexao.fechaConexao(con);
-			return pedidos;
-		} catch (Exception e) {
+			return itens;
+		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public PedidoTO listaPedido(int id) {
-		String sql = "SELECT * FROM T_DF_PEDIDO WHERE id_pedido = ?";
-		PedidoTO pedido = new PedidoTO();
+	public ItemPedidoTO listaItem(int id) {
+		String sql = "SELECT * FROM T_DF_ITEM_PEDIDO WHERE id_item_pedido = ?";
+		ItemPedidoTO item = new ItemPedidoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				int idPedido = rs.getInt(1);
+				int idItemPedido = rs.getInt(1);
+				PedidoTO pedido = new PedidoTO();
+				pedido.setIdPedido(rs.getInt(2));
 				ProdutoTO produto = new ProdutoTO();
-				produto.setIdProduto(rs.getInt(2));
-				EmpresaTO empresa = new EmpresaTO();
-				empresa.setIdEmpresa(rs.getInt(3));
-				String dtPedido = rs.getString(4);
-				pedido = new PedidoTO(idPedido, produto, empresa, dtPedido);
+				produto.setIdProduto(rs.getInt(3));
+				int qtItemProduto = rs.getInt(4);
+				item = new ItemPedidoTO(idItemPedido, pedido, produto, qtItemProduto);
 			}
-			
 			Conexao.fechaConexao(con);
-			return pedido;
-		} catch (Exception e) {
+			return item;
+		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

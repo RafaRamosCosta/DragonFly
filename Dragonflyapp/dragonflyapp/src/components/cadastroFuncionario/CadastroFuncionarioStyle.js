@@ -16,7 +16,7 @@ export const Form = styled.form`
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-
+  row-gap: 5px;
   h1 {
     color: #8cd19b;
     margin: 0;
@@ -24,10 +24,9 @@ export const Form = styled.form`
   input {
     outline: none;
     border: none;
-    height: 1.5rem;
-    margin: 5px 0;
     border-radius: 5px;
-    padding: 5px;
+    padding: 8px;
+    font-family: 'Roboto', sans-serif;
     :focus {
       outline: solid 2px #8cd19b;
     }

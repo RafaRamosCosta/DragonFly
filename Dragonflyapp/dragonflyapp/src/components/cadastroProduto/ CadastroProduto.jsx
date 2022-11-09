@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { DivForm, FormProd } from './CadastroProdutoStyle';
 
 export default function CadastroProduto() {
+
   const userData = JSON.parse(sessionStorage.getItem('user'));
 
   useEffect(() => {
-    if (!userData.nmFunc) {
+    if (userData === null) {
       window.location.href = '/login';
     }
   }, [])
@@ -36,7 +37,7 @@ export default function CadastroProduto() {
   };
   return (
     <DivForm>
-      <h1>Olá {userData.nmFunc}, Cadastre um Produto!</h1>
+      <h1>Olá {userData?.nmFunc}, Cadastre um Produto!</h1>
       <FormProd onSubmit={handleSubmit}>
         <label htmlFor="nmProduto">Nome do Produto</label>
         <input
@@ -61,9 +62,10 @@ export default function CadastroProduto() {
           placeholder="R$"
           onChange={handleInputChange}
         />
-
+        <div className="divBtnProd">
         <button type="submit">Cadastrar</button>
         <button type="reset">Limpar</button>
+        </div>
       </FormProd>
     </DivForm>
   );

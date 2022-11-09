@@ -1,27 +1,54 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { CadDiv, Form } from '../cadastro/CadastroStyle';
-export default function () {
+import { Button, CadDiv, Form } from '../cadastro/CadastroStyle';
+export default function CadastroEndereco() {
   const [ruas, setRuas] = useState([]);
+
   useEffect(() => {
-    axios('http://localhost:8080/DragonflyAPI/rest/enderecoempresa')
-      .then((res) => setRuas(res.data))
+    axios('http://localhost:8080/DragonflyAPI/rest/empresa')
+      .then((res) => {
+        setEndereco({...endereco, empresa: res.data[res.data.length - 1]})
+      })
       .catch((err) => console.log(err));
+      
+      axios('http://localhost:8080/DragonflyAPI/rest/enderecoempresa')
+        .then((res) => setRuas(res.data))
+        .catch((err) => console.log(err));
   }, []);
+
+  
   const [endereco, setEndereco] = useState({
-    empresa: '',
     nmLog: '',
     nrLog: '',
     nmBairro: '',
-    zona: '',
+    zona: 'ZS',
   });
+
   const handleInputChange = (e) => {
     setEndereco({ ...endereco, [e.target.name]: e.target.value });
     console.log(endereco);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios({
+      method: 'POST',
+      url: 'http://localhost:8080/DragonflyAPI/rest/enderecoempresa/',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: endereco,
+    }).then(() => {
+      sessionStorage.setItem('empresa', JSON.stringify(endereco.empresa))
+      window.location.href = '/cadastroContatoEmpresa'
+    }).catch((err) => console.log(err));
+    
+  };
+
   return (
     <CadDiv>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <label htmlFor="logradouro">Rua</label>
         <div className="div-logradouro">
           <select name="nmLog" onChange={handleInputChange}>
@@ -32,8 +59,8 @@ export default function () {
             ))}
           </select>
           <input
-            type="text"
-            name="nrLogradouro"
+            type="number"
+            name="nrLog"
             id="nrLogradouro"
             placeholder="Número"
             onChange={handleInputChange}
@@ -48,13 +75,18 @@ export default function () {
           onChange={handleInputChange}
         />
 
-        <label htmlFor="dsZona">Zona da Cidade</label>
-        <input
-          type="text"
-          name="dsZona"
-          placeholder="Norte-> ZN | Sul-> ZS | Leste-> ZL | Oeste-> ZO"
-          style={{ textAlign: 'center', textTransform: 'capitalize' }}
-        />
+        <label htmlFor="zona">Zona da Cidade</label>
+        <select name="zona" onChange={handleInputChange}>
+          <option value="ZS">Zona Sul</option>
+          <option value="ZN">Zona Norte</option>
+          <option value="ZL">Zona Leste</option>
+          <option value="ZO">Zona Oeste</option>
+        </select>
+
+        <div className="divButtons">
+          <Button type="submit">Cadastrar</Button>
+          <Button type="reset">Limpar</Button>
+        </div>
       </Form>
     </CadDiv>
   );

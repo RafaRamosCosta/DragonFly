@@ -18,6 +18,7 @@ export const Header = styled.header`
     }
   }
   h2 {
+    font-style: italic;
     font-size: 2rem;
   }
   nav {
@@ -32,17 +33,36 @@ export const Header = styled.header`
         transform: scale(1.25);
         color: #303630;
       }
+      img {
+        width: 25px;
+        :hover {
+          transform: none;
+        }
+      }
     }
-
+    button {
+      background-color: transparent;
+      border: none;
+      hover {
+        img {
+          transform: none;
+        }
+      }
+      img {
+        width: 25px;
+      }
+    }
     #btn-logout {
       background-color: #0c872b;
       border: none;
       color: white;
       font-size: 15px;
+      padding-top: 2px;
       transition: all 0.3s ease-in-out;
       :hover {
         transform: scale(1.25);
         color: #303630;
+        cursor: pointer;
         img {
           transform: none;
         }
@@ -53,6 +73,5 @@ export const Header = styled.header`
         transform: none;
       }
     }
-    
   }
 `;

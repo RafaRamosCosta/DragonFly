@@ -49,14 +49,28 @@ export const HeaderMobile = styled.header`
     height: 100vh;
     background-color: #0c872b;
     width: 220px;
-    .logicon{
+    .logicon {
       width: 25px;
     }
+
     a {
       color: #fff;
       text-decoration: none;
       font-size: 1.5rem;
       transition: all 0.3s ease-in-out;
+      img {
+        width: 25px;
+      }
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      img {
+        width: 25px;
+      }
+      
     }
     .login {
       color: #fff;
@@ -85,7 +99,7 @@ export const HeaderMobile = styled.header`
     align-items: center;
     justify-content: space-between;
     nav {
-      padding-top: 5rem;
+      padding-top: 3rem;
       row-gap: 50px;
       font-size: 25px;
     }

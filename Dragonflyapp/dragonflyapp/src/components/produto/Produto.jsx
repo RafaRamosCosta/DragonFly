@@ -17,9 +17,9 @@ export default function Produto() {
         (response) => setProdutos(response.data)
       );
     }
-    // else {
-    //   window.location = '/login';
-    // }
+    else {
+      window.location = '/login';
+    }
   }, []);
 
   return (
@@ -48,7 +48,7 @@ export default function Produto() {
             R$ {produto.vlUnitario}
           </p>
           <Link
-            to="/compra"
+            to="/addCarrinho"
             className="addCarrinho"
             onClick={() => sessionStorage.setItem('prodId', produto.idProduto)}>
             + Ver mais

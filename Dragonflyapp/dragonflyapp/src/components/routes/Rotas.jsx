@@ -10,8 +10,11 @@ import Home from '../home/Home';
 import CadastroEndereco from '../cadastroEndereco/CadastroEndereco';
 import CadastroContato from '../cadastroContato/CadastroContato';
 import CompraCursoPilotagem from '../compraCursoPilotagem/CompraCursoPilotagem';
-import Compra from '../compra/Compra';
+import AddCarrinho from '../addCarrinho/AddCarrinho';
 import Carrinho from '../carrinho/Carrinho';
+import Compra from '../compra/Compra';
+import CadastroEnderecoFunc from '../cadastroEnderecoFunc/CadastroEnderecoFunc';
+import CadastroContatoFunc from '../cadastroContatoFunc/CadastroContatoFunc';
 
 export default function Rotas() {
   return (
@@ -24,9 +27,12 @@ export default function Rotas() {
       <Route path="/login" element={<Login />} />
       <Route path="/cadastroProduto" element={<CadastroProduto />} />
       <Route path="/cadastroFuncionario" element={<CadastroFuncionario />} />
+      <Route path="/cadastroEnderecoFuncionario" element={<CadastroEnderecoFunc />}></Route>
+      <Route path="/cadastroContatoFuncionario" element={<CadastroContatoFunc />}></Route>
       <Route path="/compraCursoPilotagem" element={<CompraCursoPilotagem />} />
-      <Route path="/compra" element={<Compra />} />
       <Route path="/carrinho" element={<Carrinho />} />
+      <Route path="/addCarrinho" element={<AddCarrinho />} />
+      <Route path="/compra" element={<Compra />} />
     </Routes>
   );
 }

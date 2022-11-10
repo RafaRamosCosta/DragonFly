@@ -2,86 +2,89 @@ import styled from 'styled-components';
 
 export const PageCompra = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  height: 100%;
   padding: 20px;
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      padding: 10px;
+    }
+  }
 `;
 
-export const CardCompra = styled.div`
+export const DivDadosPessoais = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 50%;
-  height: 60%;
-  max-width: 700px;
-  padding: 10px;
-  color: #303630;
-  background-color: #fff;
-  border-radius: 8px;
-  background-color: #b8bab8;
-
-  .valor {
-    font-weight: bold;
-    font-size: 30px;
+  z-index: 1;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #0005;
+  box-shadow: 5px 0 8px #0008;
+  color: #404040;
+  h1 {
+    align-self: flex-start;
   }
-  figure {
-    width: 40%;
+
+  .divLogo {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     img {
-      width: 100%;
-      border-radius: 5px;
+      width: 200px;
     }
-  }
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-
-    figure {
-      justify-content: center;
-      width: 80%;
-    }
-  }
-  @media screen and (min-width: 501px) {
-    width: 100%;
-    column-gap: 10px;
-    figure {
-      width: 80%;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    margin-top: 70px;
   }
 `;
 
-export const DescProd = styled.div`
+export const CardFinalizarCompra = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  row-gap: 5px;
-  select {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
+  justify-content: center;
+  padding: 30px;
+  background-color: #c3c2c8;
+  color: #404040;
+  h2 {
+    margin-bottom: 20px;
   }
-  #btnCompra {
-    color: #fff;
-    background-color: #0c872b;
+  button {
+    padding: 10px;
+    margin-top: 10px;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    background-color: #085f63;
+    font-size: 16px;
+    color: #fff;
     transition: all 0.3s ease-in-out;
     :hover {
-      cursor: pointer;
-      background-color: #0c5f1b;
+      background-color: #0a7b80;
+      transform: scale(1.1);
     }
   }
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    h1 {
-      font-size: 1.5rem;
-    }
+`;
+
+export const Item = styled.div`
+  color: #fff;
+  position: relative;
+  margin-bottom: 15px;
+  p {
+    font-size: 0.8rem;
+    color: #5b5b5b;
+  }
+  span {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(30%, -50%);
+    background-color: #404040;
+    border-radius: 50%;
+    height: 15px !important;
+    width: 15px !important;
+    padding: 10px;
+    font-size: 0.7rem;
   }
 `;

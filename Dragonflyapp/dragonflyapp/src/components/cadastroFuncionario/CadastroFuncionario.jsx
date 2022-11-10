@@ -21,7 +21,7 @@ export default function CadastroFuncionario() {
       data: novoFuncionario,
     });
     console.log(novoFuncionario);
-    window.location = "/login";
+    window.location = "/cadastroEnderecoFuncionario";
   };
 
   const handleInputDate = (e) => {

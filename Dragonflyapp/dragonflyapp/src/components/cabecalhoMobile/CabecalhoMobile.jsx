@@ -52,13 +52,13 @@ export default function CabecalhoMobile(props) {
             <img src={cesta}></img> Produtos
           </Link>
           {userData?.nmFantasia !== undefined ? (
-            <button onClick={renderCarrinho}>
-              <BtnCarrinho /> Carrinho
-            </button>
+            <div id='divCartMobile' onClick={renderCarrinho}>
+              <BtnCarrinho renderCarrinho={renderCarrinho} /> Carrinho
+            </div>
           ) : (
             ''
           )}
-          
+
           <a href="#contato" onClick={handleOpen}>
             <img src={celular} alt="" /> Contato
           </a>
@@ -80,7 +80,7 @@ export default function CabecalhoMobile(props) {
           </div>
         </nav>
       </div>
-      {openCarrinho ? <Carrinho renderCarrinho={renderCarrinho}/> : ''}
+      {openCarrinho ? <Carrinho renderCarrinho={renderCarrinho} /> : ''}
     </HeaderMobile>
   );
 }

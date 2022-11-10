@@ -62,10 +62,7 @@ export const HeaderMobile = styled.header`
         width: 25px;
       }
     }
-    button {
-      background-color: transparent;
-      border: none;
-      color: #fff;
+    #divCartMobile {
       font-size: 1.5rem;
       img {
         width: 25px;

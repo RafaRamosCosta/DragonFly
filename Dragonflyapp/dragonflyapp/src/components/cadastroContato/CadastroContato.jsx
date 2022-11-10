@@ -31,7 +31,7 @@ export default function CadastroContato() {
   return (
     <CadDiv>
         <Form onSubmit={handleSubmit}>
-        <h1>Preencha seus dados de contato</h1>
+        <h1>Preencha os dados de contato da Empresa</h1>
         <label htmlFor="emailEmp">Email</label>
         <input type="text" name="emailEmp" placeholder="seuemail.@gmail.com" onChange={handleChange} />
 

@@ -8,6 +8,7 @@ import BtnCarrinho from '../btnCarrinho/BtnCarrinho';
 import Carrinho from '../carrinho/Carrinho';
 
 
+
 export default function Cabecalho(props) {
   const [open, setOpen] = useState(false);
   const userData = JSON.parse(sessionStorage.getItem('user'));
@@ -15,6 +16,7 @@ export default function Cabecalho(props) {
   const renderCarrinho = () => {
     setOpen(!open);
   }
+  
   return (
     <Header>
       <Link to="/">
@@ -32,7 +34,7 @@ export default function Cabecalho(props) {
         <a href="#contato">Contato</a>
         {userData ? (
           <>
-            {userData?.nmFantasia !== undefined ? <button onClick={renderCarrinho}><BtnCarrinho /></button> : ''}
+            {userData?.nmFantasia !== undefined ? <BtnCarrinho renderCarrinho={renderCarrinho}/> : ''}
             <button id="btn-logout" onClick={props.logout}>
               Logout
               <img

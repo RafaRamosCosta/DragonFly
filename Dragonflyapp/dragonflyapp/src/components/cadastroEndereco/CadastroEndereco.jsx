@@ -49,6 +49,7 @@ export default function CadastroEndereco() {
   return (
     <CadDiv>
       <Form onSubmit={handleSubmit}>
+      <h1>Cadastre o endereço da empresa</h1>
         <label htmlFor="logradouro">Rua</label>
         <div className="div-logradouro">
           <select name="nmLog" onChange={handleInputChange}>
@@ -62,7 +63,7 @@ export default function CadastroEndereco() {
             type="number"
             name="nrLog"
             id="nrLogradouro"
-            placeholder="Número"
+            placeholder="Nº"
             onChange={handleInputChange}
           />
         </div>

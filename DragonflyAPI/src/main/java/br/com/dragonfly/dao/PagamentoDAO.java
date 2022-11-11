@@ -21,16 +21,19 @@ public class PagamentoDAO implements IDAO {
 
 	public String inserir(Object obj) {
 		pagamento = (PagamentoTO) obj;
-		String sql = "INSERT INTO T_DF_PAGAMENTO(id_pagto, id_pedido, id_forma_pagto, id_empresa, dt_pagto, vl_total)"
-				+ "VALUES(?, ?, ?, ?, TO_DATE(?, 'DD/MM/YYYY'), ?)";
+		String sql = "insert into t_df_pagamento(id_pagto, id_pedido, id_forma_pagto, id_empresa, dt_pagto, vl_total) "
+				+ "SELECT NULL, " + "    PE.id_pedido, " + "    FP.id_forma_pagto, "
+				+ "    E.id_empresa, " + "    TO_DATE(SYSDATE, 'DD/MM/YYYY'), "
+				+ "    PR.vl_unitario*IP.qt_item_pedido as total "
+				+ "FROM T_DF_PRODUTO PR INNER JOIN T_DF_ITEM_PEDIDO IP "
+				+ "ON(PR.ID_PRODUTO = IP.ID_PRODUTO) INNER JOIN T_DF_PEDIDO PE "
+				+ "ON(IP.ID_PEDIDO = PE.ID_PEDIDO) INNER JOIN T_DF_EMPRESA E "
+				+ "ON(PE.id_empresa = E.id_empresa) INNER JOIN T_DF_FORMA_PAGAMENTO FP "
+				+ "ON(FP.ID_FORMA_PAGTO = ?)" + "where e.id_empresa = (select max(id_empresa) from t_df_empresa) and pe.id_pedido = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, null);
+			ps.setInt(1, pagamento.getFormaPagto().getIdFormaPagto());
 			ps.setInt(2, pagamento.getPedido().getIdPedido());
-			ps.setInt(3, pagamento.getFormaPagto().getIdFormaPagto());
-			ps.setInt(4, pagamento.getEmpresa().getIdEmpresa());
-			ps.setString(5, pagamento.getDtPagto());
-			ps.setFloat(6, pagamento.getVlTotal());
 
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -88,7 +91,7 @@ public class PagamentoDAO implements IDAO {
 	}
 
 	public ArrayList<PagamentoTO> listarPagamentos() {
-		String sql = "SELECT * FROM T_DF_PAGAMENTO";
+		String sql = "SELECT * FROM T_DF_PAGAMENTO ORDER BY 1";
 		ArrayList<PagamentoTO> pagamentos = new ArrayList<PagamentoTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -115,7 +118,7 @@ public class PagamentoDAO implements IDAO {
 	}
 
 	public PagamentoTO listarPagamento(int id) {
-		String sql = "SELECT * FROM T_DF_PAGAMENTO WHERE id_pagto = ?";
+		String sql = "SELECT * FROM T_DF_PAGAMENTO WHERE id_pagto = ? ORDER BY 1";
 		PagamentoTO pagamento = new PagamentoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);

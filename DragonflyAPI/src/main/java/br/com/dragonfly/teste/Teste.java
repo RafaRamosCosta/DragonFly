@@ -75,10 +75,9 @@ public class Teste {
 //		System.out.println(contBO.alteraContato(contato));
 		
 	PedidoTO pedido = new PedidoTO();
-		pedido.setIdPedido(1);
-		pedido.setProduto(prod);
-		pedido.setEmpresa(empresa);
-		pedido.setDtPedido("01/11/2022");
+//		pedido.setIdPedido(1);
+//		pedido.setEmpresa(empresa);
+//		pedido.setDtPedido("01/11/2022");
 		
 //		PedidoBO pBO = new PedidoBO();
 //		System.out.println(pBO.excluiPedido(pedido.getIdPedido()));

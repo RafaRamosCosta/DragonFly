@@ -28,7 +28,6 @@ public class ItemPedidoDAO implements IDAO {
 			ps.setInt(2, itemPedido.getPedido().getIdPedido());
 			ps.setInt(3, itemPedido.getProduto().getIdProduto());
 			ps.setInt(4, itemPedido.getQtItemPedido());
-			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
 				return "Inserido com sucesso!";

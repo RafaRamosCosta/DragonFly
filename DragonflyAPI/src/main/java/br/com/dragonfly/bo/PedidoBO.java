@@ -32,9 +32,9 @@ public class PedidoBO {
 		return pedidos;
 	}
 	
-	public PedidoTO listaPedido(int id) {
+	public ArrayList<PedidoTO> listaPedidos(int id) {
 		pDAO = new PedidoDAO();
-		return pDAO.listaPedido(id);
+		return pDAO.listaPedidos(id);
 	}
 	
 }

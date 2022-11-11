@@ -5,16 +5,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PedidoTO {
 	private int idPedido;
-	private ProdutoTO produto;
 	private EmpresaTO empresa;
 	private String dtPedido;
 
 	public PedidoTO() {
 	}
 
-	public PedidoTO(int idPedido, ProdutoTO produto, EmpresaTO empresa, String dtPedido) {
+	public PedidoTO(int idPedido,  EmpresaTO empresa, String dtPedido) {
 		this.idPedido = idPedido;
-		this.produto = produto;
 		this.empresa = empresa;
 		this.dtPedido = dtPedido;
 	}
@@ -25,14 +23,6 @@ public class PedidoTO {
 
 	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
-	}
-
-	public ProdutoTO getProduto() {
-		return produto;
-	}
-
-	public void setProduto(ProdutoTO produto) {
-		this.produto = produto;
 	}
 
 	public EmpresaTO getEmpresa() {

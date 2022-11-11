@@ -33,8 +33,8 @@ public class PedidoResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public PedidoTO buscaPedido(@PathParam("id") int id) {
-		return pBO.listaPedido(id);
+	public ArrayList<PedidoTO> buscaPedido(@PathParam("id") int id) {
+		return pBO.listaPedidos(id);
 	}
 	
 	@POST

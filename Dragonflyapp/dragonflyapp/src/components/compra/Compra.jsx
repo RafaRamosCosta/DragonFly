@@ -15,6 +15,7 @@ export default function Compra() {
   const [contato, setContato] = useState({});
   const [total, setTotal] = useState(0);
   const [formasPagto, setFormasPagto] = useState([]);
+  const [pagto, setPagto] = useState({});
   let carrinho = JSON.parse(localStorage.getItem('carrinho'));
   let endereco = JSON.parse(sessionStorage.getItem('endereco'));
 
@@ -46,6 +47,30 @@ export default function Compra() {
     return total;
   };
 
+  const handleChange = (e) => {
+    setPagto({ ...pagto, [e.target.name]: JSON.parse(e.target.value) });
+    console.log(pagto);
+  };
+  const handleFinalizarCompra = (e) => {
+    e.preventDefault();
+    let pedido = JSON.parse(sessionStorage.getItem('pedido'));
+    axios({
+      method: 'POST',
+      url: 'http://localhost:8080/DragonflyAPI/rest/pagamento/',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: { ...pagto, pedido: pedido },
+    }).then((res) => {
+      if (res.status === 201) {
+        alert( "Compra realizada com sucesso!");
+        localStorage.removeItem('carrinho');
+        window.location = '/';
+      } else {
+        alert("Erro ao realizar compra!");
+      }
+    }).catch((error) => console.log(error));
+  };
   return (
     <PageCompra>
       <DivDadosPessoais>
@@ -113,13 +138,17 @@ export default function Compra() {
             </Item>
           </>
         ))}
-        <h3>Total: R${(total).toFixed(2)}</h3>
-        <select name="formaPagto" id="">
-          {formasPagto.map((forma, i) =>(
-            <option key={i} value={JSON.stringify(forma)}>{forma.nmFormaPagto}</option>
+        <h3>Total: R${total.toFixed(2)}</h3>
+        <select name="formaPagto" defaultValue={formasPagto[0]} onChange={handleChange}>
+          {formasPagto.map((forma, i) => (
+            <option key={i} value={JSON.stringify(forma)}>
+              {forma.nmFormaPagto}
+            </option>
           ))}
         </select>
-        <button>Finalizar compra</button>
+        <button onClick={(e) => {
+          handleFinalizarCompra(e);
+        }}>Finalizar compra</button>
       </CardFinalizarCompra>
     </PageCompra>
   );

@@ -62,6 +62,14 @@ export const CardFinalizarCompra = styled.aside`
       transform: scale(1.1);
     }
   }
+  select {
+    padding: 5px;
+    border: none;
+    :focus {
+      outline: #0a7b80 2px solid;
+      
+    }
+  }
 `;
 
 export const Item = styled.div`

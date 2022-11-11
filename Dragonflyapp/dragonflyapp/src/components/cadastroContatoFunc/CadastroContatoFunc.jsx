@@ -5,7 +5,7 @@ export default function CadastroContatoFunc() {
   const funcionario = JSON.parse(sessionStorage.getItem('funcionario'));
 
   const [contato, setContato] = useState({
-    funcionario: funcionario,
+    func: funcionario,
     nrTelefone: '',
     emailFunc: '',
   })
@@ -24,8 +24,13 @@ export default function CadastroContatoFunc() {
         'Content-Type': 'application/json',
       },
       data: contato,
-    }).then(() => {
-      window.location.href = '/login';
+    }).then((res) => {
+      if (res.status === 201) {
+        sessionStorage.setItem('contato', JSON.stringify(res.data))
+        window.location.href = '/login'
+      } else {
+        alert('Erro ao cadastrar contato, informe dados válidos!')
+      }
     }).catch((error) => console.log(error));
   }
   return (

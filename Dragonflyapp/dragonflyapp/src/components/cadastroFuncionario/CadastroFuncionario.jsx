@@ -1,4 +1,4 @@
-  import axios from 'axios';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { CadDiv, Form, Button } from './CadastroFuncionarioStyle';
 
@@ -19,9 +19,16 @@ export default function CadastroFuncionario() {
         'Content-Type': 'application/json',
       },
       data: novoFuncionario,
+    }).then((res) => {
+      console.log(res)
+      if (res.status === 201) {
+        console.log(novoFuncionario);
+        sessionStorage.setItem('funcionario', JSON.stringify(novoFuncionario));
+        window.location = '/cadastroEnderecoFuncionario';
+      } else {
+        alert('Erro ao cadastrar funcionário, informe dados válidos!');
+      }
     });
-    console.log(novoFuncionario);
-    window.location = "/cadastroEnderecoFuncionario";
   };
 
   const handleInputDate = (e) => {

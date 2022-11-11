@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { DivForm, FormProd } from './CadastroProdutoStyle';
 
 export default function CadastroProduto() {
-
   const userData = JSON.parse(sessionStorage.getItem('user'));
 
   useEffect(() => {
     if (userData === null) {
       window.location.href = '/login';
     }
-  }, [])
-  
+  }, []);
+
   const [novoProduto, setNovoProduto] = useState({
     func: userData,
     nmProduto: '',
@@ -33,6 +32,13 @@ export default function CadastroProduto() {
         'Content-Type': 'application/json',
       },
       data: novoProduto,
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 201) {
+        window.location.href = '/produtos';
+      } else {
+        alert('Erro ao cadastrar produto, informe dados válidos!');
+      }
     });
   };
   return (
@@ -63,8 +69,8 @@ export default function CadastroProduto() {
           onChange={handleInputChange}
         />
         <div className="divBtnProd">
-        <button type="submit">Cadastrar</button>
-        <button type="reset">Limpar</button>
+          <button type="submit">Cadastrar</button>
+          <button type="reset">Limpar</button>
         </div>
       </FormProd>
     </DivForm>

@@ -25,20 +25,26 @@ export default function Cadastro() {
         'Content-Type': 'application/json',
       },
       data: novaEmpresa,
-    }).then(() => {
-      
-      window.location.href = '/cadastroEnderecoEmpresa'
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        alert('Erro ao conectar com o servidor');
-      } else if (error.request) {
-        console.log(error.request);
-        alert('Erro ao conectar com o servidor');
-      } else {
-        console.log('Error', error.message);
-      }
-    });
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          window.location.href = '/cadastroEnderecoEmpresa';
+        } else {
+          alert('Erro ao cadastrar empresa, informe dados válidos');
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          alert('Erro ao conectar com o servidor');
+        } else if (error.request) {
+          console.log(error.request);
+          alert('Erro ao conectar com o servidor');
+        } else {
+          console.log('Error', error.message);
+        }
+      });
   };
 
   return (

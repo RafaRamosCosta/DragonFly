@@ -25,7 +25,7 @@ export const Btn = styled.button`
     width: 15px !important;
     height: 15px !important;
     font-size: 10px !important;
-    text-align: center;
+    text-align: center !important;
     transform: translate(45%, 25%);
   }
 `;

@@ -46,7 +46,7 @@ export default function AddCarrinho() {
             <>
               <BotaoQtde
                 quantidade={quantidade}
-                setQuantidade={setQuantidadEse}
+                setQuantidade={setQuantidade}
               />
               <button id="btnCompra" onClick={() => handleAdd()}>
                 Adicionar ao carrinho

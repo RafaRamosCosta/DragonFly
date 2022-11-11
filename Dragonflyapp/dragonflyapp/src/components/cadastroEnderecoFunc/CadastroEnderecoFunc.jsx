@@ -4,12 +4,17 @@ import { Button, CadDiv, Form } from '../cadastro/CadastroStyle';
 export default function CadastroEnderecoFunc() {
   const [bairros, setBairros] = useState([]);
   const [ruas, setRuas] = useState([]);
-  
+
   useEffect(() => {
     axios('http://localhost:8080/DragonflyAPI/rest/funcionario')
       .then((res) => {
         setEndereco({ ...endereco, func: res.data[res.data.length - 1] });
-      }).catch((err) => console.log(err));
+        sessionStorage.setItem(
+          'funcionario',
+          JSON.stringfy(res.data[res.data.length - 1])
+        );
+      })
+      .catch((err) => console.log(err));
     axios('http://localhost:8080/DragonflyAPI/rest/bairro')
       .then((res) => setBairros(res.data))
       .catch((err) => console.log(err));
@@ -70,9 +75,12 @@ export default function CadastroEnderecoFunc() {
         <label htmlFor="cidade">Cidade</label>
         <input type="text" readonly disabled value={'São Paulo'} />
         <label htmlFor="bairro">Bairro</label>
-        <select name="bairro" defaultValue={bairros[0]?.idBairro} onChange={handleBairroChange}>
+        <select
+          name="bairro"
+          defaultValue={bairros[0]?.idBairro}
+          onChange={handleBairroChange}>
           {bairros.map((bairro, i) => (
-            <option key={i} value={bairro.idBairro}>
+            <option key={i} value={bairro?.idBairro}>
               {bairro.nmBairro}
             </option>
           ))}

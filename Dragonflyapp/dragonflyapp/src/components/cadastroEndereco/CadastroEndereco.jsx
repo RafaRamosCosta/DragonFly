@@ -63,10 +63,10 @@ export default function CadastroEndereco() {
   return (
     <CadDiv>
       <Form onSubmit={handleSubmit}>
-        <h1>Cadastre o endereço da empresa</h1>
+        <h1>{endereco?.empresa?.nmFantasia} Cadastre o endereço da empresa</h1>
 
         <label htmlFor="bairro">Bairro</label>
-        <select name="bairro" defaultValue={bairros[0].idBairro} onChange={handleBairroChange}>
+        <select name="bairro" defaultValue={bairros[0]?.idBairro} onChange={handleBairroChange}>
           {bairros.map((bairro, i) => (
             <option key={i} value={bairro.idBairro}>
               {bairro.nmBairro}

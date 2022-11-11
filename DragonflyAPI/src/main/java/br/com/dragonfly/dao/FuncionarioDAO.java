@@ -88,7 +88,7 @@ public class FuncionarioDAO implements IDAO {
 
 	public ArrayList<FuncionarioTO> listaFuncs() {
 		ArrayList<FuncionarioTO> funcs = new ArrayList<FuncionarioTO>();
-		String sql = "SELECT * FROM T_DF_FUNCIONARIO";
+		String sql = "SELECT * FROM T_DF_FUNCIONARIO ORDER BY 1";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -110,7 +110,7 @@ public class FuncionarioDAO implements IDAO {
 	}
 
 	public FuncionarioTO listaFuncs(int id) {
-		String sql = "SELECT * FROM T_DF_FUNCIONARIO WHERE id_funcionario = ?";
+		String sql = "SELECT * FROM T_DF_FUNCIONARIO WHERE id_funcionario = ? ORDER BY 1";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);

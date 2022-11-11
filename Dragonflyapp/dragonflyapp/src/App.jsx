@@ -7,6 +7,7 @@ import Rotas from './components/routes/Rotas';
 export default function App() {
   const handleLogout = () => {
     sessionStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
     window.location = '/';
   }
 

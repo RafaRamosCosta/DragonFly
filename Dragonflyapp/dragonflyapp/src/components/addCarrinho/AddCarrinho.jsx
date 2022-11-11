@@ -19,7 +19,6 @@ export default function AddCarrinho() {
     } else {
       window.location = '/login';
     }
-    
   }, []);
 
   const handleAdd = () => {
@@ -43,10 +42,19 @@ export default function AddCarrinho() {
           <h1>{produto.nmProduto}</h1>
           <p>{produto.dsProduto}</p>
           <p className="valor">R$ {produto.vlUnitario}</p>
-          <BotaoQtde quantidade={quantidade} setQuantidade={setQuantidade} />
-          <button id="btnCompra" onClick={() => handleAdd()}>
-            Adicionar ao carrinho
-          </button>
+          {userData.nmFantasia ? (
+            <>
+              <BotaoQtde
+                quantidade={quantidade}
+                setQuantidade={setQuantidade}
+              />
+              <button id="btnCompra" onClick={() => handleAdd()}>
+                Adicionar ao carrinho
+              </button>
+            </>
+          ) : (
+            ''
+          )}
         </DescProd>
       </CardCompra>
     </PageCompra>

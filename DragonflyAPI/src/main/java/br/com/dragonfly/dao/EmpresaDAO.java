@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.EmpresaTO;
@@ -35,7 +36,7 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -60,7 +61,7 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -80,7 +81,7 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -103,7 +104,7 @@ public class EmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return empresas;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -127,7 +128,7 @@ public class EmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return empresa;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -156,7 +157,7 @@ public class EmpresaDAO implements IDAO{
 			} else {
 				return null;
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

@@ -12,7 +12,7 @@ private LogradouroDAO lDAO = new LogradouroDAO();
 		return lDAO.listaLogradouros();
 	}
 	
-	public LogradouroTO listaLogradouro(int id) {
+	public ArrayList<LogradouroTO> listaLogradouro(int id) {
 		return lDAO.listaLogradouro(id);
 	}
 }

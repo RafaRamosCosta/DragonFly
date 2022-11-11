@@ -57,14 +57,14 @@ public class Teste {
 		
 		
 		EnderecoEmpresaTO endereco = new EnderecoEmpresaTO();
-		endereco.setIdEndEmp(1);
-		endereco.setEmpresa(empresa);
-		endereco.setNmLog("Av. Chucri Zaidan");
-		endereco.setNrLog(4);
-		endereco.setNmBairro("Santo Amaro");
-		endereco.setZona("ZS");
-		EnderecoEmpresaBO endBO = new EnderecoEmpresaBO();
-		System.out.println(endBO.listaEnderecos());
+//		endereco.setIdEndEmp(1);
+//		endereco.setEmpresa(empresa);
+//		endereco.setNmLog("Av. Chucri Zaidan");
+//		endereco.setNrLog(4);
+//		endereco.setNmBairro("Santo Amaro");
+//		endereco.setZona("ZS");
+//		EnderecoEmpresaBO endBO = new EnderecoEmpresaBO();
+//		System.out.println(endBO.listaEnderecos());
 		
 		ContatoEmpresaTO contato = new ContatoEmpresaTO();
 		contato.setIdContEmp(1);

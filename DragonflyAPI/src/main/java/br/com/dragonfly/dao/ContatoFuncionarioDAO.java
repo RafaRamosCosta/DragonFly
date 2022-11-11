@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.ContatoFuncionarioTO;
@@ -35,7 +36,7 @@ public class ContatoFuncionarioDAO implements IDAO{
 				return "Erro ao inserir!";
 			}
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -59,7 +60,7 @@ public class ContatoFuncionarioDAO implements IDAO{
 				return "Erro ao alterar!";
 			}
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -81,7 +82,7 @@ public class ContatoFuncionarioDAO implements IDAO{
 				return "Erro ao alterar!";
 			}
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -103,7 +104,7 @@ public class ContatoFuncionarioDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return contatos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -125,7 +126,7 @@ public class ContatoFuncionarioDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return contato;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

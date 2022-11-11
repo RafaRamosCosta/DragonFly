@@ -44,8 +44,10 @@ public class EmpresaResource {
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(empTO.getIdEmpresa()));
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
 		}
-		return Response.created(builder.build()).build();
 	}
 	
 	@PUT

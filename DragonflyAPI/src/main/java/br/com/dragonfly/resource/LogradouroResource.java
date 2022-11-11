@@ -16,14 +16,14 @@ public class LogradouroResource {
 	private LogradouroBO bBO = new LogradouroBO();
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LogradouroTO> buscaContatos() {
+	public ArrayList<LogradouroTO> buscaLogradouros() {
 		return bBO.listaLogradouros();
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public LogradouroTO buscaContato(@PathParam("id") int id) {
+	public ArrayList<LogradouroTO> buscaLogradouros(@PathParam("id") int id) {
 		return bBO.listaLogradouro(id);
 	}
 }

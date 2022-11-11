@@ -43,8 +43,10 @@ private EnderecoFuncionarioBO endBO = new EnderecoFuncionarioBO();
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(end.getIdEndFunc()));
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
 		}
-		return Response.created(builder.build()).build();
 	}
 	
 	@PUT

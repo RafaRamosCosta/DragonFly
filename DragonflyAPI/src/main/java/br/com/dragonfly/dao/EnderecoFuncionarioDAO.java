@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,7 +39,7 @@ public class EnderecoFuncionarioDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -60,7 +61,7 @@ public class EnderecoFuncionarioDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -80,7 +81,7 @@ public class EnderecoFuncionarioDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		}catch(Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -103,7 +104,7 @@ public class EnderecoFuncionarioDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return enderecos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -127,7 +128,7 @@ public class EnderecoFuncionarioDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return endereco;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

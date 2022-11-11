@@ -13,25 +13,29 @@ import logo from '../../images/dragonfly.png';
 export default function Compra() {
   const userData = JSON.parse(sessionStorage.getItem('user'));
   const [contato, setContato] = useState({});
-  const [endereco, setEndereco] = useState({});
   const [total, setTotal] = useState(0);
+  const [formasPagto, setFormasPagto] = useState([]);
   let carrinho = JSON.parse(localStorage.getItem('carrinho'));
+  let endereco = JSON.parse(sessionStorage.getItem('endereco'));
+
   useEffect(() => {
     if (!userData) {
       window.location = '/login';
     }
     axios(
-      `http://localhost:8080/DragonflyAPI/rest/enderecoempresa/${userData.idEmpresa}`
-    )
-      .then((response) => setEndereco(response.data))
-      .catch((error) => console.log(error));
-    axios(
       `http://localhost:8080/DragonflyAPI/rest/contatoempresa/${userData.idEmpresa}`
     )
-      .then((response) => setContato(response.data))
+      .then((response) => {
+        setContato(response.data);
+      })
+      .catch((error) => console.log(error));
+    axios('http://localhost:8080/DragonflyAPI/rest/formapagto')
+      .then((response) => {
+        setFormasPagto(response.data);
+      })
       .catch((error) => console.log(error));
     setTotal(handleTotal);
-  }, [carrinho]);
+  }, []);
 
   const handleTotal = () => {
     let total = 0;
@@ -46,7 +50,7 @@ export default function Compra() {
     <PageCompra>
       <DivDadosPessoais>
         <h1>Finalize sua compra {userData.nmFantasia}</h1>
-        <div className='divLogo'>
+        <div className="divLogo">
           <img src={logo} alt="" />
           <i>DragonflyDrones</i>
         </div>
@@ -56,7 +60,7 @@ export default function Compra() {
             <label htmlFor="nome">Nome</label>
             <input
               type="text"
-              readonly
+              readOnly
               disabled
               name="nome"
               id="nome"
@@ -65,7 +69,7 @@ export default function Compra() {
             <label htmlFor="email">Email</label>
             <input
               type="email"
-              readonly
+              readOnly
               disabled
               name="email"
               id="email"
@@ -74,7 +78,7 @@ export default function Compra() {
             <label htmlFor="telefone">Telefone</label>
             <input
               type="telefone"
-              readonly
+              readOnly
               disabled
               name="telefone"
               id="telefone"
@@ -83,12 +87,16 @@ export default function Compra() {
             <label htmlFor="logradouro">Endereço</label>
             <input
               type="text"
-              readonly
+              readOnly
               disabled
               name="logradouro"
               id="logradouro"
               value={
-                endereco.nmLog + ' ' + endereco.nrLog + ', ' + endereco.nmBairro
+                endereco?.log?.nmLog +
+                ' ' +
+                endereco?.nrLog +
+                ', ' +
+                endereco?.log?.bairro?.nmBairro
               }
             />
           </form>
@@ -105,7 +113,12 @@ export default function Compra() {
             </Item>
           </>
         ))}
-        <h3>Total: {total}</h3>
+        <h3>Total: R${(total).toFixed(2)}</h3>
+        <select name="formaPagto" id="">
+          {formasPagto.map((forma, i) =>(
+            <option key={i} value={JSON.stringify(forma)}>{forma.nmFormaPagto}</option>
+          ))}
+        </select>
         <button>Finalizar compra</button>
       </CardFinalizarCompra>
     </PageCompra>

@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.ContatoEmpresaTO;
@@ -34,7 +35,7 @@ public class ContatoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -56,7 +57,7 @@ public class ContatoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -76,7 +77,7 @@ public class ContatoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -98,14 +99,14 @@ public class ContatoEmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return contatos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	public ContatoEmpresaTO listaContato(int id) {
-		String sql = "SELECT * FROM T_DF_CONTATO_EMPRESA WHERE id_contato_empresa = ?";
+		String sql = "SELECT * FROM T_DF_CONTATO_EMPRESA WHERE id_empresa = ?";
 		ContatoEmpresaTO contato = new ContatoEmpresaTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -121,7 +122,7 @@ public class ContatoEmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return contato;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

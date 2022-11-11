@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.EmpresaTO;
@@ -36,7 +37,7 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -57,7 +58,7 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao alterado!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -77,7 +78,7 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -100,7 +101,7 @@ public class PedidoDAO {
 			}
 			Conexao.fechaConexao(con);
 			return pedidos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -125,7 +126,7 @@ public class PedidoDAO {
 			
 			Conexao.fechaConexao(con);
 			return pedido;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

@@ -6,14 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class LogradouroTO {
 	private int idLog;
 	private BairroTO bairro;
-	private String nmLogradouro;
+	private String nmLog;
 	
 	public LogradouroTO() {}
 
-	public LogradouroTO(int idLog, BairroTO bairro, String nmLogradouro) {
+	public LogradouroTO(int idLog, BairroTO bairro, String nmLog) {
 		this.idLog = idLog;
 		this.bairro = bairro;
-		this.nmLogradouro = nmLogradouro;
+		this.nmLog = nmLog;
 	}
 
 	public int getIdLog() {
@@ -32,12 +32,12 @@ public class LogradouroTO {
 		this.bairro = bairro;
 	}
 
-	public String getNmLogradouro() {
-		return nmLogradouro;
+	public String getNmLog() {
+		return nmLog;
 	}
 
-	public void setNmLogradouro(String nmLogradouro) {
-		this.nmLogradouro = nmLogradouro;
+	public void setNmLog(String nmLog) {
+		this.nmLog = nmLog;
 	}
 	
 	

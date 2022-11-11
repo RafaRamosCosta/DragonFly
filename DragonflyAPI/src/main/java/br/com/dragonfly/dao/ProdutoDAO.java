@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.FuncionarioTO;
@@ -27,7 +28,7 @@ public class ProdutoDAO implements IDAO{
 			ps.setString(3, produto.getNmProduto());
 			ps.setString(4, produto.getDsProduto());
 			ps.setFloat(5, produto.getVlUnitario());
-			ps.setString(6, produto.getStProduto());
+			ps.setString(6, "A");
 
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -36,7 +37,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -60,7 +61,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -80,7 +81,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -104,7 +105,7 @@ public class ProdutoDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return produtos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -129,7 +130,7 @@ public class ProdutoDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return produto;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

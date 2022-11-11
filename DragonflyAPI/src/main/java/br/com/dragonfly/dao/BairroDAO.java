@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.BairroTO;
@@ -29,7 +30,7 @@ public class BairroDAO {
 			}
 			Conexao.fechaConexao(con);
 			return bairros;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -50,7 +51,7 @@ public class BairroDAO {
 			}
 			Conexao.fechaConexao(con);
 			return bairro;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

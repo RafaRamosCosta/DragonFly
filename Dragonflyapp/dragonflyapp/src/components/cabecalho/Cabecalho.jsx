@@ -7,8 +7,6 @@ import logout from '../../images/log-out.svg';
 import BtnCarrinho from '../btnCarrinho/BtnCarrinho';
 import Carrinho from '../carrinho/Carrinho';
 
-
-
 export default function Cabecalho(props) {
   const [open, setOpen] = useState(false);
   const userData = JSON.parse(sessionStorage.getItem('user'));

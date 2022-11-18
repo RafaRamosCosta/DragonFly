@@ -39,14 +39,15 @@ public class ContatoEmpresaResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/{id}")
 	public Response cadastrar(ContatoEmpresaTO cont, @Context UriInfo uriInfo) {
 		String resp = contBO.cadastraContato(cont);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(cont.getIdContEmp()));
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
 		}
-		return Response.created(builder.build()).build();
 	}
 	
 	@PUT

@@ -33,8 +33,8 @@ public class PedidoResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public PedidoTO buscaPedido(@PathParam("id") int id) {
-		return pBO.listaPedido(id);
+	public ArrayList<PedidoTO> buscaPedido(@PathParam("id") int id) {
+		return pBO.listaPedidos(id);
 	}
 	
 	@POST
@@ -44,8 +44,10 @@ public class PedidoResource {
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(pedido.getIdPedido()));
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
 		}
-		return Response.created(builder.build()).build();
 	}
 	
 	@PUT

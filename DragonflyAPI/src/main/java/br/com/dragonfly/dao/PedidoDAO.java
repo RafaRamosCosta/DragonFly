@@ -3,11 +3,11 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.EmpresaTO;
 import br.com.dragonfly.to.PedidoTO;
-import br.com.dragonfly.to.ProdutoTO;
 
 
 public class PedidoDAO {
@@ -20,15 +20,13 @@ public class PedidoDAO {
 	
 	public String inserir(Object obj) {
 		pedido = (PedidoTO) obj;
-		String sql = "INSERT INTO T_DF_PEDIDO(id_pedido, id_produto, id_empresa, dt_pedido, qt_produto) "
-				+ "VALUES(?, ?, ?, TO_DATE(?, 'DD/MM/YYYY'), ?)";
+		String sql = "INSERT INTO T_DF_PEDIDO(id_pedido, id_empresa, dt_pedido) "
+				+ "VALUES(?, ?, TO_DATE(?, 'DD/MM/YYYY'))";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, null);
-			ps.setInt(2, pedido.getProduto().getIdProduto());
-			ps.setInt(3, pedido.getEmpresa().getIdEmpresa());
-			ps.setString(4, pedido.getDtPedido());
-			ps.setInt(5, pedido.getQtProduto());
+			ps.setInt(2, pedido.getEmpresa().getIdEmpresa());
+			ps.setString(3, pedido.getDtPedido());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -37,7 +35,7 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -45,12 +43,11 @@ public class PedidoDAO {
 	
 	public String alterar(Object obj) {
 		pedido = (PedidoTO) obj;
-		String sql = "UPDATE T_DF_PEDIDO SET dt_pedido = ?, qt_produto = ? WHERE id_pedido = ?";
+		String sql = "UPDATE T_DF_PEDIDO SET dt_pedido = ? WHERE id_pedido = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, pedido.getDtPedido());
-			ps.setInt(2, pedido.getQtProduto());
-			ps.setInt(3, pedido.getIdPedido());
+			ps.setInt(2, pedido.getIdPedido());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -59,7 +56,7 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao alterado!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -79,57 +76,51 @@ public class PedidoDAO {
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
 	}
 	
 	public ArrayList<PedidoTO> listaPedidos() {
-		String sql = "SELECT * FROM T_DF_PEDIDO";
+		String sql = "SELECT * FROM T_DF_PEDIDO ORDER BY 1";
 		ArrayList<PedidoTO> pedidos = new ArrayList<PedidoTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				int idPedido = rs.getInt(1);
-				ProdutoTO produto = new ProdutoTO();
-				produto.setIdProduto(rs.getInt(2));
 				EmpresaTO empresa = new EmpresaTO();
-				empresa.setIdEmpresa(rs.getInt(3));
-				String dtPedido = rs.getString(4);
-				int qtPedido = rs.getInt(5);
-				pedidos.add(new PedidoTO(idPedido, empresa, produto, dtPedido, qtPedido));
+				empresa.setIdEmpresa(rs.getInt(2));
+				String dtPedido = rs.getString(3);
+				pedidos.add(new PedidoTO(idPedido, empresa, dtPedido));
 			}
 			Conexao.fechaConexao(con);
 			return pedidos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public PedidoTO listaPedido(int id) {
-		String sql = "SELECT * FROM T_DF_PEDIDO WHERE id_pedido = ?";
-		PedidoTO pedido = new PedidoTO();
+	public ArrayList<PedidoTO> listaPedidos(int id) {
+		String sql = "SELECT * FROM T_DF_PEDIDO WHERE id_empresa = ? ORDER BY 1";
+		ArrayList<PedidoTO> pedidos = new ArrayList<PedidoTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				int idPedido = rs.getInt(1);
-				ProdutoTO produto = new ProdutoTO();
-				produto.setIdProduto(rs.getInt(2));
 				EmpresaTO empresa = new EmpresaTO();
-				empresa.setIdEmpresa(rs.getInt(3));
-				String dtPedido = rs.getString(4);
-				int qtPedido = rs.getInt(5);
-				pedido = new PedidoTO(idPedido, empresa, produto, dtPedido, qtPedido);
+				empresa.setIdEmpresa(rs.getInt(2));
+				String dtPedido = rs.getString(3);
+				pedidos.add(new PedidoTO(idPedido, empresa, dtPedido));
 			}
 			
 			Conexao.fechaConexao(con);
-			return pedido;
-		} catch (Exception e) {
+			return pedidos;
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

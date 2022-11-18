@@ -44,8 +44,10 @@ public class FormaPagtoResource {
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(forma.getIdFormaPagto()));
-		} 
-		return Response.created(builder.build()).build();
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
+		}
 	}
 	
 	@PUT

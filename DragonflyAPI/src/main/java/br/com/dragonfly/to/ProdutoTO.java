@@ -5,13 +5,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ProdutoTO {
 	private int idProduto;
+	private FuncionarioTO func;
 	private String nmProduto, dsProduto, stProduto;
 	private float vlUnitario;
 	
 	public ProdutoTO() {}
 
-	public ProdutoTO(int idProduto, String nmProduto, String dsProduto, String stProduto, float vlUnitario) {
+	public ProdutoTO(int idProduto, FuncionarioTO func, String nmProduto, String dsProduto, String stProduto, float vlUnitario) {
 		this.idProduto = idProduto;
+		this.func = func;
 		this.nmProduto = nmProduto;
 		this.dsProduto = dsProduto;
 		this.stProduto = stProduto;
@@ -26,6 +28,14 @@ public class ProdutoTO {
 		this.idProduto = idProduto;
 	}
 
+	public FuncionarioTO getFunc() {
+		return func;
+	}
+	
+	public void setFunc(FuncionarioTO func) {
+		this.func = func;
+	}
+	
 	public String getNmProduto() {
 		return nmProduto;
 	}

@@ -6,16 +6,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EnderecoEmpresaTO {
 	private int idEndEmp, nrLog;
 	private EmpresaTO empresa;
-	private String nmLog, nmBairro, zona;
-	
+	private LogradouroTO log;
+
 	public EnderecoEmpresaTO() {}
 
-	public EnderecoEmpresaTO(int idEndEmp, int nrLog, EmpresaTO empresa, String nmLog, String nmBairro, String zona) {
+	public EnderecoEmpresaTO(int idEndEmp, int nrLog, EmpresaTO empresa, LogradouroTO log) {
 		this.idEndEmp = idEndEmp;
 		this.nrLog = nrLog;
 		this.empresa = empresa;
-		this.nmBairro = nmBairro;
-		this.zona = zona;
+		this.log = log;
 	}
 
 	public int getIdEndEmp() {
@@ -41,30 +40,13 @@ public class EnderecoEmpresaTO {
 	public void setEmpresa(EmpresaTO empresa) {
 		this.empresa = empresa;
 	}
-	
-	public String getNmLog() {
-		return nmLog;
-	}
-	
-	public void setNmLog(String nmLog) {
-		this.nmLog = nmLog;
+
+	public LogradouroTO getLog() {
+		return log;
 	}
 
-	public String getNmBairro() {
-		return nmBairro;
+	public void setLog(LogradouroTO log) {
+		this.log = log;
 	}
 
-	public void setNmBairro(String nmBairro) {
-		this.nmBairro = nmBairro;
-	}
-	
-	public String getZona() {
-		return zona;
-	}
-	
-	public void setZona(String zona) {
-		this.zona = zona;
-	}
-	
-	
 }

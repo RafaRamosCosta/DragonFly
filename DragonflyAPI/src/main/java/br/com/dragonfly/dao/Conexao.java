@@ -20,7 +20,7 @@ public class Conexao {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-			final String USER = "RM94281";
+			final String USER = "RM94286";
 			final String PASS = "040304";
 			con = DriverManager.getConnection(url, USER, PASS);
 			System.out.println("Conexão aberta!");

@@ -3,7 +3,10 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import br.com.dragonfly.to.FuncionarioTO;
 import br.com.dragonfly.to.ProdutoTO;
 
 public class ProdutoDAO implements IDAO{
@@ -16,15 +19,16 @@ public class ProdutoDAO implements IDAO{
 
 	public String inserir(Object obj) {
 		produto = (ProdutoTO) obj;
-		String sql = "INSERT INTO T_DF_PRODUTO(id_produto, nm_produto, ds_produto, vl_unitario, st_produto) "
-				+ "VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO T_DF_PRODUTO(id_produto, id_funcionario, nm_produto, ds_produto, vl_unitario, st_produto) "
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, null);
-			ps.setString(2, produto.getNmProduto());
-			ps.setString(3, produto.getDsProduto());
-			ps.setFloat(4, produto.getVlUnitario());
-			ps.setString(5, produto.getStProduto());
+			ps.setInt(2, produto.getFunc().getIdFunc());
+			ps.setString(3, produto.getNmProduto());
+			ps.setString(4, produto.getDsProduto());
+			ps.setFloat(5, produto.getVlUnitario());
+			ps.setString(6, "A");
 
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -33,7 +37,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -57,7 +61,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -77,7 +81,7 @@ public class ProdutoDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -91,22 +95,24 @@ public class ProdutoDAO implements IDAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				int idProduto = rs.getInt(1);
-				String nmProduto = rs.getString(2);
-				String dsProduto = rs.getString(3);
-				float vlUnitario = rs.getFloat(4);
-				String stProduto = rs.getString(5);
-				produtos.add(new ProdutoTO(idProduto, nmProduto, dsProduto, stProduto, vlUnitario));
+				FuncionarioTO func = new FuncionarioTO();
+				func.setIdFunc(rs.getInt(2));
+				String nmProduto = rs.getString(3);
+				String dsProduto = rs.getString(4);
+				float vlUnitario = rs.getFloat(5);
+				String stProduto = rs.getString(6);
+				produtos.add(new ProdutoTO(idProduto, func, nmProduto, dsProduto, stProduto, vlUnitario));
 			}
 			Conexao.fechaConexao(con);
 			return produtos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	public ProdutoTO listaProduto(int id) {
-		String sql = "SELECT * FROM T_DF_PRODUTO WHERE id_produto = ?";
+		String sql = "SELECT * FROM T_DF_PRODUTO WHERE id_funcionario = ?";
 		ProdutoTO produto = new ProdutoTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -114,15 +120,17 @@ public class ProdutoDAO implements IDAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				int idProduto = rs.getInt(1);
-				String nmProduto = rs.getString(2);
-				String dsProduto = rs.getString(3);
-				float vlUnitario = rs.getFloat(4);
-				String stProduto = rs.getString(5);
-				produto = new ProdutoTO(idProduto, nmProduto, dsProduto, stProduto, vlUnitario);
+				FuncionarioTO func = new FuncionarioTO();
+				func.setIdFunc(rs.getInt(2));
+				String nmProduto = rs.getString(3);
+				String dsProduto = rs.getString(4);
+				float vlUnitario = rs.getFloat(5);
+				String stProduto = rs.getString(6);
+				produto = new ProdutoTO(idProduto, func, nmProduto, dsProduto, stProduto, vlUnitario);
 			}
 			Conexao.fechaConexao(con);
 			return produto;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

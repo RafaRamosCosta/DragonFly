@@ -33,7 +33,7 @@ public class EmpresaResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public EmpresaTO buscaEmp(int id) {
+	public EmpresaTO buscaEmp(@PathParam("id")int id) {
 		return empBO.listaEmpresa(id);
 	}
 	
@@ -44,8 +44,10 @@ public class EmpresaResource {
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		if (resp.equals("Inserido com sucesso!")) {
 			builder.path(Integer.toString(empTO.getIdEmpresa()));
+			return Response.created(builder.build()).build();
+		} else {
+			return Response.status(405).build();
 		}
-		return Response.created(builder.build()).build();
 	}
 	
 	@PUT

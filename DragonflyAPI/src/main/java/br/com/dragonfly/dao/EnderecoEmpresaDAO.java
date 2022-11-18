@@ -3,10 +3,12 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.EmpresaTO;
 import br.com.dragonfly.to.EnderecoEmpresaTO;
+import br.com.dragonfly.to.LogradouroTO;
 
 public class EnderecoEmpresaDAO implements IDAO{
 	private Connection con = null;
@@ -18,16 +20,14 @@ public class EnderecoEmpresaDAO implements IDAO{
 	
 	public String inserir(Object obj) {
 		endereco = (EnderecoEmpresaTO) obj;
-		String sql = "INSERT INTO T_DF_ENDERECO_EMPRESA(id_endereco_empresa, id_empresa, nm_logradouro, nr_logradouro, nm_bairro, ds_zona)"
-				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO T_DF_ENDERECO_EMPRESA(id_endereco_empresa, id_empresa, id_logradouro, nr_logradouro)"
+				+ "VALUES(?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, null);
 			ps.setInt(2, endereco.getEmpresa().getIdEmpresa());
-			ps.setString(3, endereco.getNmLog());
+			ps.setInt(3, endereco.getLog().getIdLog());
 			ps.setLong(4, endereco.getNrLog());
-			ps.setString(5, endereco.getNmBairro());
-			ps.setString(6, endereco.getZona());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -36,7 +36,7 @@ public class EnderecoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -44,13 +44,12 @@ public class EnderecoEmpresaDAO implements IDAO{
 	
 	public String alterar(Object obj) {
 		endereco = (EnderecoEmpresaTO) obj;
-		String sql = "UPDATE T_DF_ENDERECO_EMPRESA SET nm_logradouro = ?, nr_logradouro = ?, nm_bairro = ? WHERE id_endereco_empresa = ?";
+		String sql = "UPDATE T_DF_ENDERECO_EMPRESA SET id_logradouro = ?, nr_logradouro = ? WHERE id_endereco_empresa = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, endereco.getNmLog());
+			ps.setInt(1, endereco.getLog().getIdLog());
 			ps.setInt(2, endereco.getNrLog());
-			ps.setString(3, endereco.getNmBairro());
-			ps.setInt(4, endereco.getEmpresa().getIdEmpresa());
+			ps.setInt(3, endereco.getEmpresa().getIdEmpresa());
 			
 			if (ps.executeUpdate() > 0) {
 				Conexao.fechaConexao(con);
@@ -59,7 +58,7 @@ public class EnderecoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -79,7 +78,8 @@ public class EnderecoEmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			Conexao.fechaConexao(con);
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -95,22 +95,21 @@ public class EnderecoEmpresaDAO implements IDAO{
 				int idEndEmp = rs.getInt(1);
 				EmpresaTO empresa = new EmpresaTO();
 				empresa.setIdEmpresa(rs.getInt(2));
-				String nmLog = rs.getString(3);
+				LogradouroTO log = new LogradouroTO();
+				log.setIdLog(rs.getInt(3));
 				int nrLog = rs.getInt(4);
-				String nmBairro = rs.getString(5);
-				String zona = rs.getString(6);
-				enderecos.add(new EnderecoEmpresaTO(idEndEmp, nrLog, empresa, nmLog, nmBairro, zona));
+				enderecos.add(new EnderecoEmpresaTO(idEndEmp, nrLog, empresa, log));
 			}
 			Conexao.fechaConexao(con);
 			return enderecos;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
 	public EnderecoEmpresaTO listaEndereco(int id) {
-		String sql = "SELECT * FROM T_DF_ENDERECO_EMPRESA WHERE id_endereco_empresa = ?";
+		String sql = "SELECT * FROM T_DF_ENDERECO_EMPRESA WHERE id_empresa = ?";
 		EnderecoEmpresaTO endereco = new EnderecoEmpresaTO();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -120,15 +119,14 @@ public class EnderecoEmpresaDAO implements IDAO{
 				int idEndEmp = rs.getInt(1);
 				EmpresaTO empresa = new EmpresaTO();
 				empresa.setIdEmpresa(rs.getInt(2));
-				String nmLog = rs.getString(3);
+				LogradouroTO log = new LogradouroTO();
+				log.setIdLog(rs.getInt(3));
 				int nrLog = rs.getInt(4);
-				String nmBairro = rs.getString(5);
-				String zona = rs.getString(6);
-				endereco = new EnderecoEmpresaTO(idEndEmp, nrLog, empresa, nmLog, nmBairro, zona);
+				endereco = new EnderecoEmpresaTO(idEndEmp, nrLog, empresa, log);
 			}
 			Conexao.fechaConexao(con);
 			return endereco;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}

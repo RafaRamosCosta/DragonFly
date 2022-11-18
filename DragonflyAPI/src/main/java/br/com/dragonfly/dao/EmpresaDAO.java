@@ -3,6 +3,7 @@ package br.com.dragonfly.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.dragonfly.to.EmpresaTO;
@@ -35,7 +36,7 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao inserir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -60,7 +61,7 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao alterar!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
@@ -80,14 +81,14 @@ public class EmpresaDAO implements IDAO{
 				Conexao.fechaConexao(con);
 				return "Erro ao excluir!";
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return e.getMessage();
 		}
 	}
 	
 	public ArrayList<EmpresaTO> listaEmpresas() {
-		String sql = "SELECT * FROM T_DF_EMPRESA";
+		String sql = "SELECT * FROM T_DF_EMPRESA ORDER BY 1";
 		ArrayList<EmpresaTO> empresas = new ArrayList<EmpresaTO>();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -103,7 +104,7 @@ public class EmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return empresas;
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -127,7 +128,36 @@ public class EmpresaDAO implements IDAO{
 			}
 			Conexao.fechaConexao(con);
 			return empresa;
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public EmpresaTO login(EmpresaTO emp) {
+		String sql = "SELECT * FROM T_DF_EMPRESA WHERE ds_login = ? and ds_senha = ?";
+		EmpresaTO empresa = new EmpresaTO();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, emp.getLogin());
+			ps.setString(2, emp.getSenha());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int idEmp = rs.getInt(1);
+				String nmFantasia = rs.getString(2);
+				String rzSocial = rs.getString(3);
+				long cnpj = rs.getLong(4);
+				String login = rs.getString(5);
+				String senha = rs.getString(6);
+				empresa = new EmpresaTO(idEmp, cnpj, nmFantasia, rzSocial, login, senha);
+			}
+			Conexao.fechaConexao(con);
+			if (empresa.getIdEmpresa() != 0) {
+				return empresa;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
